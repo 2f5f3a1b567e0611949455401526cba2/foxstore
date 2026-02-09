@@ -32,18 +32,21 @@
             <tr>
                 <td>ProductID</td>
                 <td>Product Name</td>
+                <td>Price</td>
                 <td>Stock</td>
                 <td></td>
             </tr>
             <?php 
-                $query = $db->query('SELECT product_id, name, stock FROM products');
+                $query = $db->query('SELECT product_id, name, stock, price FROM products');
                 while(($row = $query->fetch())) {
                     $pname = $row["name"];
                     $id = $row["product_id"];
+                    $price = $row["price"];
                     $stock = $row["stock"];
                     echo "<tr>";
                     echo "<td>$id</td>";
                     echo "<td>$pname</td>";
+                    echo "<td>$$price</td>";
                     echo "<td>";
                     echo "<form class='stock' action='updatestock.php' method='post'>";
                     echo "<input type='submit' style='display:none;'><button name='change' value='-1'>-</button><input type='text' name='stock' value='$stock'><button name='change' value='1'>+</button><input type='hidden' name='pid' value='$id'></form>";
