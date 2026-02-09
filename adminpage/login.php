@@ -8,7 +8,7 @@
 </head>
 <body>
     <div>
-        <form action="./" method="post" class="login">
+        <form action="./" method="post" class="login vform">
             <h1>Admin login</h1>
             <div>
                 <label for="username">Användarnamn</label>

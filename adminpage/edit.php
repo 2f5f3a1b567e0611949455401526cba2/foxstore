@@ -21,7 +21,7 @@
         <h1>Editing product ID <?=$productID?></h1>
         <a href="./">Back</a>
         
-        <form action="" class="editform" method="post">
+        <form action="" class="editform vform" method="post">
             <div>
                 <label for="name">Product name</label>
                 <input type="text" name="name" id="name" minlength="2" required value="Trampoline">

@@ -65,15 +65,14 @@ tr:nth-child(2n) {
     background-color: #eee;
 }
 
-form {
+
+.vform {
     margin-inline: auto;
-    padding: 1em;
-    border: 2px solid #eee;
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-    max-width: 400px;
     margin-top: 1em;
+    display: flex;
+    gap: 1em;
+    flex-direction: column;
+    max-width: 400px;
 }
 
 .editform {
