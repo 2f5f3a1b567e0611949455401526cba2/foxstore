@@ -65,6 +65,10 @@ tr:nth-child(2n) {
     background-color: #eee;
 }
 
+td:last-child {
+    text-align: right;
+}
+
 
 .vform {
     margin-inline: auto;

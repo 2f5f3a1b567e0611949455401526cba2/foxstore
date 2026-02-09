@@ -59,6 +59,7 @@
                 <td></td>
                 <td></td>
                 <td></td>
+                <td></td>
                 <td><a href='new.php'>Add new</a></td>
             </tr>
         </table>
