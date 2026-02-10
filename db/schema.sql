@@ -1,3 +1,4 @@
+START TRANSACTION;
 DROP DATABASE IF EXISTS store;
 CREATE DATABASE store;
 
@@ -24,8 +25,10 @@ CREATE TABLE store.products (
 
 CREATE TABLE store.orders (
 	order_id    BIGINT        UNSIGNED AUTO_INCREMENT,
-	status      ENUM("cart", "unpaid", "paid", "packaged", "delivered"),
-	time        DATETIME,
+	status      ENUM("cart", "unpaid", "paid", "packaged", "delivered")
+		DEFAULT("cart"),
+
+	time        DATETIME               NOT NULL DEFAULT(CURRENT_TIMESTAMP()),
 	user_id     BIGINT        UNSIGNED NOT NULL,
 
 	FOREIGN KEY (user_id) REFERENCES users(user_id)
@@ -62,3 +65,4 @@ CREATE TABLE store.images (
 
 	PRIMARY KEY (id)
 );
+COMMIT;
