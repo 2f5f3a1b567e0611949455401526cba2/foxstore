@@ -2,24 +2,25 @@
     session_start();
     require "./includes/helper.php";
 
-    if (!post_contains(["username","password"])) {
-        return;
+    if (post_contains(["username","password"])) {
+        require "./includes/db.php";
+    
+        $username = $_POST["username"];
+        $password = password_hash($_POST["password"],PASSWORD_BCRYPT);
+    
+        //$statement = $db->prepare('SELECT * FROM admins WHERE username=:username AND password=:password');
+        $statement = $db->prepare('INSERT INTO admins (username, password) VALUES (:username, :password);');
+        $statement->bindParam(':username', $username);
+        $statement->bindParam(':password', $password);
+        $statement->execute();
+        if ($statement->fetch()) {
+            // Found matching admin
+            $_SESSION['admin'] = true;
+            redirect("./");
+        }
+        
     }
 
-    require "./includes/db.php";
-
-    $username = $_POST["username"];
-    $password = password_hash($_POST["password"]);
-
-    $statement = $db->prepare('SELECT * FROM admins WHERE username=:username AND password=:password');
-    $statement->bindParam(':username', $username);
-    $statement->bindParam(':password', $password);
-    $statement->execute();
-    if ($statement->fetch()) {
-        // Found matching admin
-        $_SESSION['admin'] = true;
-        redirect("./");
-    }
 ?>
 
 <!DOCTYPE html>

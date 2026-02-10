@@ -1,9 +1,9 @@
 <?php
     require './includes/db.php';
+    require './includes/helper.php';
     session_start();
     if (!isset($_SESSION["admin"])) {
-        require './login.php';
-        exit;
+        redirect('./login.php');
     }
     
 ?>
