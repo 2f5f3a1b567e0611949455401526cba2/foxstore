@@ -1,11 +1,12 @@
 START TRANSACTION;
+
 DROP DATABASE IF EXISTS store;
 CREATE DATABASE store;
 
 CREATE TABLE store.users(
 	user_id     BIGINT        UNSIGNED AUTO_INCREMENT,
-	name        TINYTEXT               NOT NULL,
-	address     TINYTEXT               NOT NULL,
+
+	user_type   ENUM("admin", "customer") DEFAULT("customer"),
  
 	username    VARCHAR(20)            NOT NULL,
 	password    TINYTEXT               NOT NULL,
@@ -25,6 +26,10 @@ CREATE TABLE store.products (
 
 CREATE TABLE store.orders (
 	order_id    BIGINT        UNSIGNED AUTO_INCREMENT,
+
+	name        TINYTEXT               NOT NULL,
+	address     TINYTEXT               NOT NULL,
+
 	status      ENUM("cart", "unpaid", "paid", "packaged", "delivered")
 		DEFAULT("cart"),
 
@@ -65,4 +70,5 @@ CREATE TABLE store.images (
 
 	PRIMARY KEY (id)
 );
+
 COMMIT;
