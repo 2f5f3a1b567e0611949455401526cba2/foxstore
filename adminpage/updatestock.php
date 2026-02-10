@@ -1,5 +1,6 @@
 <?php
-    require 'db.php';
+    require './includes/checklogin.php';
+    require './includes/db.php';
     if (isset($_POST["pid"]) && (isset($_POST["stock"]))) {
         $pid = $_POST["pid"];
         $newStock = $_POST["stock"];

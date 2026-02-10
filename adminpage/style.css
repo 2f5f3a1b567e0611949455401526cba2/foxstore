@@ -65,15 +65,35 @@ tr:nth-child(2n) {
     background-color: #eee;
 }
 
-form {
+td:last-child {
+    text-align: right;
+}
+
+
+.vform {
     margin-inline: auto;
-    padding: 1em;
-    border: 2px solid #eee;
     display: flex;
-    flex-direction: column;
     gap: 1em;
+    flex-direction: column;
     max-width: 400px;
+}
+
+.removeform, .vform {
     margin-top: 1em;
+}
+
+.removeform {
+    display: flex;
+    justify-content: end;
+}
+
+.removebutton {
+    color: red;
+    max-width: fit-content;
+}
+
+.error {
+    color: red;
 }
 
 .editform {
