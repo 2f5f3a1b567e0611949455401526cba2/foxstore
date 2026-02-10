@@ -1,4 +1,6 @@
 <?php
+    require './includes/checklogin.php';
+    
     if (isset($_GET["edit_id"])) {
         $product_id = $_GET["edit_id"];
     } else {

@@ -1,11 +1,7 @@
 <?php
     require './includes/db.php';
     require './includes/helper.php';
-    session_start();
-    if (!isset($_SESSION["admin"])) {
-        redirect('./login.php');
-    }
-    
+    require './includes/checklogin.php';
 ?>
 
 <!DOCTYPE html>

@@ -1,6 +1,7 @@
 <?php
     require './includes/db.php';
     require './includes/helper.php';
+    require './includes/checklogin.php';
     if (!post_contains(['name','desc','price'])) {
         redirect("./");
     }

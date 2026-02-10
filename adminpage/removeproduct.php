@@ -1,4 +1,5 @@
 <?php
+    require './includes/checklogin.php';
     require './includes/db.php';
     if (isset($_POST["pid"])) {
         

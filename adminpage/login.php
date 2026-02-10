@@ -1,23 +1,26 @@
 <?php
-    session_start();
+    
     require "./includes/helper.php";
-
+    $error = "";
     if (post_contains(["username","password"])) {
         require "./includes/db.php";
     
         $username = $_POST["username"];
-        $password = password_hash($_POST["password"],PASSWORD_BCRYPT);
+        $password = $_POST["password"];
     
-        //$statement = $db->prepare('SELECT * FROM admins WHERE username=:username AND password=:password');
-        $statement = $db->prepare('INSERT INTO admins (username, password) VALUES (:username, :password);');
+        $statement = $db->prepare('SELECT * FROM admins WHERE username=:username');
+        //$statement = $db->prepare('INSERT INTO admins (username, password) VALUES (:username, :password);');
         $statement->bindParam(':username', $username);
-        $statement->bindParam(':password', $password);
         $statement->execute();
-        if ($statement->fetch()) {
-            // Found matching admin
-            $_SESSION['admin'] = true;
-            redirect("./");
+        if ($row = $statement->fetch()) {
+            // Found matching user
+            if (password_verify($password,$row["password"])) {
+                session_start();
+                $_SESSION['admin'] = true;
+                redirect("./");
+            }
         }
+        $error = "Invalid username/password";
         
     }
 
@@ -44,6 +47,7 @@
                 <input type="password" name="password" id="password">
             </div>
             <button type="submit">Logga in</button>
+            <p class="error"><?=$error?></p>
         </form>
     </div>
 </body>
