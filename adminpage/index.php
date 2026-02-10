@@ -1,20 +1,11 @@
 <?php
-    require 'db.php';
-    
-    if (isset($_POST["username"]) && $_POST["password"]) {
-        $username = htmlspecialchars($_POST["username"]);
-        $password = htmlspecialchars($_POST["password"]);
-        if ($username == "admin" && $password == "123") {
-            $authorized = true;
-        } else {
-            echo "Fel användarnamn eller lösenord";
-        }
-    }
-
-    /*if (!isset($authorized)) {
-        include("login.php");
+    require './includes/db.php';
+    session_start();
+    if (!isset($_SESSION["admin"])) {
+        require './login.php';
         exit;
-    }*/
+    }
+    
 ?>
 
 <!DOCTYPE html>

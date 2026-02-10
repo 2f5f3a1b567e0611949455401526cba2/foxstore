@@ -1,5 +1,5 @@
 <?php
-    require 'db.php';
+    require './includes/db.php';
     if (isset($_POST["pid"])) {
         
         $statement = $db->prepare("DELETE FROM products WHERE product_id = :product_id");

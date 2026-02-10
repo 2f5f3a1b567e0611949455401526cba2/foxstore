@@ -6,7 +6,7 @@
         exit;
     }
 
-    require 'db.php';
+    require './includes/db.php';
     $statement = $db->prepare('SELECT * FROM products WHERE product_id=:product_id');
     $statement->bindParam(':product_id', $product_id);
     $statement->execute();
