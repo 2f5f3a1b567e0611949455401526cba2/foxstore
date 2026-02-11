@@ -1,0 +1,54 @@
+:root {
+	--m: 2147483648;
+	--idx-x: 0;
+	--idx-y: 0;
+}
+
+body,
+body > * > *,
+body > * > * > * > * ,
+body > * > * > * > * > * > * ,
+body > * > * > * > * > * > * > * > *,
+body > * > * > * > * > * > * > * > * > * > *
+{
+	--idx-y: calc(var(--idx-x) + 1);
+	--index: calc(min(var(--idx-y), var(--idx-x)) + var(--c-index, 1));
+
+	--random: mod(calc(1103515245 * var(--index) + 12345), var(--m));
+	--random-0-1: calc(var(--random) / var(--m));
+}
+
+body > *,
+body > * > * > *,
+body > * > * > * > * > * ,
+body > * > * > * > * > * > * > *,
+body > * > * > * > * > * > * > * > * > *,
+body > * > * > * > * > * > * > * > * > * > * > *
+{
+	--idx-x: calc(var(--idx-y) + 1);
+	--index: calc(min(var(--idx-y), var(--idx-x)) + var(--c-index, 1));
+
+	--random: mod(calc(1103515245 * var(--index) + 12345), var(--m));
+	--random-0-1: calc(var(--random) / var(--m));
+}
+
+*:nth-child(10n+1) { --c-index: 1; }
+*:nth-child(10n+2) { --c-index: 2; }
+*:nth-child(10n+3) { --c-index: 3; }
+*:nth-child(10n+4) { --c-index: 4; }
+*:nth-child(10n+5) { --c-index: 5; }
+*:nth-child(10n+6) { --c-index: 6; }
+*:nth-child(10n+7) { --c-index: 7; }
+*:nth-child(10n+8) { --c-index: 8; }
+*:nth-child(10n+9) { --c-index: 9; }
+*:nth-child(10n+10) { --c-index: 10; }
+
+*:nth-child(n+11) { --c-index: calc(var(--c-index) + 10); }
+*:nth-child(n+21) { --c-index: calc(var(--c-index) + 10); }
+*:nth-child(n+31) { --c-index: calc(var(--c-index) + 10); }
+*:nth-child(n+41) { --c-index: calc(var(--c-index) + 10); }
+*:nth-child(n+51) { --c-index: calc(var(--c-index) + 10); }
+*:nth-child(n+61) { --c-index: calc(var(--c-index) + 10); }
+*:nth-child(n+71) { --c-index: calc(var(--c-index) + 10); }
+*:nth-child(n+81) { --c-index: calc(var(--c-index) + 10); }
+*:nth-child(n+91) { --c-index: calc(var(--c-index) + 10); }

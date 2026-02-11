@@ -1,3 +1,6 @@
+/* Used for psudo random*/
+@import url("../math/random.css");
+
 :root {
 	--background: #000000;
 	--page-foreground: white;
@@ -10,23 +13,28 @@
 	--polaroid-background: #272727;
 	--paper-color: #FAFCDE;
 
+	/* Size of image  */
+	--reel-width-focus:  calc(var(--polaroid-size) * 0.823057);
+	--reel-height-focus: calc(var(--polaroid-size) * 1       );
 	/* Size of image when in reel */
-	--reel-scale: 1;
-	--reel-width: 5vh;
-	--reel-hight: 5vh;
-	/* Size of image when in focus */
-	--reel-scale-focus: 5;
-	--reel-width-focus: calc( var(--reel-width) * var(--reel-scale-focus));
-	--reel-height-focus: calc( var(--reel-hight) * var(--reel-scale-focus));
+	--reel-scale: 0.5;
+	--reel-width:  calc(var(--reel-width-focus)  * var(--reel-scale));
+	--reel-height: calc(var(--reel-height-focus) * var(--reel-scale));
+
 }
 
 body {
 	background: var(--background);
 	margin: 0;
+	--index: 0;
 }
 
 /* Test element representing a image */
-.example_image { height: 5vh; width: 5vh; background: red; }
+.example_image { 
+	transform-origin: top left; /* This is required for alignmnet - if better way exist please do patch :) */
+	height: var(--reel-height-focus); 
+	width: var(--reel-width-focus); 
+}
 
 
 /* Frame; Declares how the reel elements are organized when focused */
@@ -66,29 +74,24 @@ body {
 
 .reel > .images {
 	position: relative;
-	height: max-content;
-	width: max-content;
-	background: var(--paper-color);
-	scale: var(--reel-scale);
-
+	height: var(--reel-height);
+	width: var(--reel-width);
 	position-anchor: --product-image;
-	position-area: center; 
+	left: anchor(left);
+	top: anchor(top);
 }
+.reel > .images > * { scale: var(--reel-scale); }
 
 .reel-select { visibility: collapse; }
 /* Checked behavior */
 .reel-select:checked ~ .title { display: flex; }
 .reel-select:checked ~ .desc  { display: flex; }
-.reel-select:checked ~ .images { 
-	position: fixed; 
-	scale: var(--reel-scale-focus);
-}
-
+.reel-select:checked ~ .images { position: fixed; }
+.reel-select:checked ~ .images > * { scale: 1; }
 
 /* Set back to default afrer next button */
 .reel-select:checked ~ .reel-select ~ .title { display: none; }
 .reel-select:checked ~ .reel-select ~ .desc  { display: none; }
-.reel-select:checked ~ .reel-select ~ .images {
-	position: relative;
-	scale: var(--reel-scale);
-}
+.reel-select:checked ~ .reel-select ~ .images { position: relative; }
+.reel-select:checked ~ .reel-select ~ .images > * { scale: var(--reel-scale); }
+
