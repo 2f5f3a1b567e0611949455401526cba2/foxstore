@@ -31,7 +31,6 @@ body {
 
 /* Test element representing a image */
 .example_image { 
-	transform-origin: top left; /* This is required for alignmnet - if better way exist please do patch :) */
 	height: var(--reel-height-focus); 
 	width: var(--reel-width-focus); 
 }
@@ -80,18 +79,29 @@ body {
 	left: anchor(left);
 	top: anchor(top);
 }
-.reel > .images > * { scale: var(--reel-scale); }
+.reel > .images > * { 
+	scale: var(--reel-scale);
+	translate: calc(-50% + (50% * var(--reel-scale)))
+             calc(-50% + (50% * var(--reel-scale)));
+}
 
 .reel-select { visibility: collapse; }
 /* Checked behavior */
 .reel-select:checked ~ .title { display: flex; }
 .reel-select:checked ~ .desc  { display: flex; }
 .reel-select:checked ~ .images { position: fixed; }
-.reel-select:checked ~ .images > * { scale: 1; }
+.reel-select:checked ~ .images > * { scale: 1; 
+	translate: calc(-50% + (50% * 1))
+             calc(-50% + (50% * 1));
+}
 
 /* Set back to default afrer next button */
 .reel-select:checked ~ .reel-select ~ .title { display: none; }
 .reel-select:checked ~ .reel-select ~ .desc  { display: none; }
 .reel-select:checked ~ .reel-select ~ .images { position: relative; }
-.reel-select:checked ~ .reel-select ~ .images > * { scale: var(--reel-scale); }
+.reel-select:checked ~ .reel-select ~ .images > * { 
+	scale: var(--reel-scale);
+	translate: calc(-50% + (50% * var(--reel-scale)))
+             calc(-50% + (50% * var(--reel-scale)));
+}
 
