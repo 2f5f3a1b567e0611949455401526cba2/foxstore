@@ -9,6 +9,15 @@
 	--polaroid-sepia: 30%;
 	--polaroid-background: #272727;
 	--paper-color: #FAFCDE;
+
+	/* Size of image when in reel */
+	--reel-scale: 1;
+	--reel-width: 5vh;
+	--reel-hight: 5vh;
+	/* Size of image when in focus */
+	--reel-scale-focus: 5;
+	--reel-width-focus: calc( var(--reel-width) * var(--reel-scale-focus));
+	--reel-height-focus: calc( var(--reel-hight) * var(--reel-scale-focus));
 }
 
 body {
@@ -16,57 +25,70 @@ body {
 	margin: 0;
 }
 
-.example_image {
-	height: 5vh;
-	width: 5vh;
-}
+/* Test element representing a image */
+.example_image { height: 5vh; width: 5vh; background: red; }
 
-.reel {
-	display: flex;
-}	
 
+/* Frame; Declares how the reel elements are organized when focused */
 .frame {
-	height: 10vh;
-	width: 0em;
-	background: yellow;
+	display: grid;
+	color: var(--paper-color);
+	grid-template:
+		"title title" min-content 
+		"image desc" var(--reel-height-focus)
+	/ var(--reel-width-focus) auto;
+	gap: 0.5em 0.5em;
 }
 
-.entry {
-	--scale: 1;
-	--current-x: 0px;
-  --current-y: 50vh;
+.frame > #product-title { grid-area: title; anchor-name: --product-title; margin: 0; }
+.frame > #product-desc  { grid-area: desc;  anchor-name: --product-desc;  }
+.frame > #product-image { grid-area: image; anchor-name: --product-image; }
 
+/* The Small images of products 
+ * This is managed using a radio input which can hide and show elements from button status
+ * Elements are moved using anchors, though using a wrapper around the elements would be 
+ * prefferd, i could not get `.reel-select:checked + .entry > .title {}` to work with 
+ * anchors, no idea why.
+ * */
+.reel { display: flex; }	
+
+/* Default settings */
+.reel > .title, .desc {
+	display: none;
+	position: fixed; 
+	width: anchor-size(width);
+  height: anchor-size(height);
+	background: var(--paper-color);
+	position-area: center; 
+}
+.reel > .title { position-anchor: --product-title; }
+.reel > .desc  { position-anchor: --product-desc;  }
+
+.reel > .images {
 	position: relative;
 	height: max-content;
 	width: max-content;
 	background: var(--paper-color);
+	scale: var(--reel-scale);
 
-	transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-  transform: translate(var(--current-x), var(--current-y)) scale(var(--scale));; 
+	position-anchor: --product-image;
+	position-area: center; 
 }
 
-.radio-container {
-		display: flex;
-		flex-shrink: 0;
-    width: 5vh;
-    height: 5vh;
-    transition: width 0.6s ease, margin 0.6s ease;
-    position: relative;
+.reel-select { visibility: collapse; }
+/* Checked behavior */
+.reel-select:checked ~ .title { display: flex; }
+.reel-select:checked ~ .desc  { display: flex; }
+.reel-select:checked ~ .images { 
+	position: fixed; 
+	scale: var(--reel-scale-focus);
 }
-.reel > .radio-container:has(.reel-select:checked) {
-	width: 0;
-  margin: 0;
-}
-.reel-select {
-	visibility: collapse;
-}
-.reel-select:checked + .entry { 
-	position: absolute;
 
-	--current-x: 20vw;
-  --current-y: 20vh;
-	--scale: 7;
-	/* --select: 1;  */
+
+/* Set back to default afrer next button */
+.reel-select:checked ~ .reel-select ~ .title { display: none; }
+.reel-select:checked ~ .reel-select ~ .desc  { display: none; }
+.reel-select:checked ~ .reel-select ~ .images {
+	position: relative;
+	scale: var(--reel-scale);
 }
-/* #opt2:checked + .entry { visibility: collapse; --select: 2; } */
-/* #opt3:checked + .entry { visibility: collapse; --select: 3; } */
