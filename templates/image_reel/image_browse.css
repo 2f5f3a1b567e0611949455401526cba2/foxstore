@@ -29,6 +29,20 @@ body {
 	--index: 0;
 }
 
+
+.image-browse { visibility: collapse; }
+.image-browse + * { display: none !important; }
+.image-browse:checked + * { display: flex !important; }
+
+
+
+
+
+
+
+
+
+
 /* Test element representing a image */
 .example_image { 
 	height: var(--reel-height-focus); 

@@ -42,7 +42,6 @@ body {
 /* https://support.polaroid.com/hc/en-us/articles/115012363647-What-are-Polaroid-photo-dimensions */
 
 .polaroid {
-	transform-origin: top left;
 	display: flex;
 	flex-direction: column;
 
