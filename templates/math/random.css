@@ -1,0 +1,41 @@
+:root {
+	--m: 2147483648;
+	--idx-x: 1;
+	--idx-y: 0;
+}
+
+body,
+body > * > *,
+body > * > * > * > * ,
+body > * > * > * > * > * > * ,
+body > * > * > * > * > * > * > * > *,
+body > * > * > * > * > * > * > * > * > * > *
+{
+	--idx-y: calc(var(--idx-x) + var(--c-index));
+	--index: calc(min(var(--idx-y), var(--idx-x)));
+
+	--random: mod(calc(1103515245 * var(--index) + 12345), var(--m));
+	--random-0-1: sin(var(--random));
+}
+
+body > *,
+body > * > * > *,
+body > * > * > * > * > * ,
+body > * > * > * > * > * > * > *,
+body > * > * > * > * > * > * > * > * > *,
+body > * > * > * > * > * > * > * > * > * > * > *
+{
+	--idx-x: calc(var(--idx-y) + var(--c-index));
+	--index: calc(min(var(--idx-y), var(--idx-x)));
+
+	--random: mod(calc(1103515245 * var(--index) + 12345), var(--m));
+	--random-0-1: sin(var(--random));
+}
+
+*:nth-child(7n+1) { --c-index: 1; }
+*:nth-child(7n+2) { --c-index: 2; }
+*:nth-child(7n+3) { --c-index: 3; }
+*:nth-child(7n+4) { --c-index: 4; }
+*:nth-child(7n+5) { --c-index: 5; }
+*:nth-child(7n+6) { --c-index: 6; }
+*:nth-child(7n+7) { --c-index: 7; }
