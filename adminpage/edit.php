@@ -17,6 +17,15 @@
     $product_desc = $row["description"];
     $product_price = $row["price"];
 
+    $statement = $db->prepare('SELECT * FROM images WHERE product_id=:product_id');
+    $statement->bindParam(':product_id', $product_id);
+    $statement->execute();
+    $images = []; // Associative array mapping image id to image path
+    while(($row = $statement->fetch())) {
+        $images[$row["id"]] = $row["image_path"];
+    }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -31,7 +40,7 @@
     <main>
         <h1>Editing product ID <?=$product_id?> (<?=$product_name?>)</h1>
         <a href="./">Back</a>
-        <form action="updateproduct.php" class="editform vform" method="post">
+        <form action="updateproduct.php" class="editform vform" method="post" enctype="multipart/form-data">
             <input type="hidden" name="pid" value="<?=$product_id?>">
             <?php
                 require "./includes/editform.php";

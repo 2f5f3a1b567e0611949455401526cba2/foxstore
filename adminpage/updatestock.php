@@ -7,6 +7,9 @@
         if (isset($_POST["change"])) {
             $newStock += $_POST["change"];
         }
+        if ($newStock < 0) {
+            redirect('./');
+        }
         
         $statement = $db->prepare("UPDATE products SET stock = :stock WHERE product_id = :product_id");
         $statement->bindParam(':stock', $newStock);
@@ -14,5 +17,5 @@
         $statement->execute();
         
     }
-    header('Location: ./')
+    header('Location: ./');
 ?>
