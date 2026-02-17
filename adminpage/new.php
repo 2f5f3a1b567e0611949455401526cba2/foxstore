@@ -13,7 +13,7 @@ require './includes/checklogin.php';
     <main>
         <h1>Creating new product</h1>
         <a href="./">Back</a>
-        <form action="updateproduct.php" class="editform vform" method="post">
+        <form action="updateproduct.php" class="editform vform" method="post" enctype="multipart/form-data">
             <input type="hidden" name="new" value="1">
             <?php
                 $product_name = "New product";
