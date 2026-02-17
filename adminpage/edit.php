@@ -17,12 +17,12 @@
     $product_desc = $row["description"];
     $product_price = $row["price"];
 
-    $statement = $db->prepare('SELECT image_path FROM images WHERE product_id=:product_id');
+    $statement = $db->prepare('SELECT * FROM images WHERE product_id=:product_id');
     $statement->bindParam(':product_id', $product_id);
     $statement->execute();
-    $image_paths = [];
+    $images = []; // Associative array mapping image id to image path
     while(($row = $statement->fetch())) {
-        array_push($image_paths,$row["image_path"]);
+        $images[$row["id"]] = $row["image_path"];
     }
 
 

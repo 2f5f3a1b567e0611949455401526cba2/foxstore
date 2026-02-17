@@ -15,16 +15,16 @@
 </div>
 <div class="images">
     <?php
-        foreach($image_paths as $image_path) {
+        foreach($images as $imageid => $image_path) {
             echo "<div>";
             echo "<img src='./userimg/$image_path'>";
-            echo "<button class='deletebutton'>X</button>";
+            echo "<button class='deletebutton' value='$imageid' name='deleteimg'>X</button>";
             echo "</div>";
         }
     ?>
 
 </div>
 <div>
-    <label for="image">Upload images</label>
+    <label for="image">Upload new image</label>
     <input type="file" name="image" id="image" accept=".png,.jpg,.jpeg,.svg,.webp">
 </div>

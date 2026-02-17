@@ -3,11 +3,25 @@
     require './includes/helper.php';
     require './includes/checklogin.php';
 
+    function get_full_img_path($imgname) {
+        $imgdir = "./userimg/";
+        return $imgdir . $imgname;
+    }
+
     // Upload an image and return the file name or an empty string if there was an error
     function upload_image() {
-        $imgDir = "./userimg/";
         $imgfile = $_FILES["image"];
-        $targetPath = $imgDir . basename($imgfile["name"]);
+        // Create a new unique filename, like backpack.png becomes backpack_3ab8213e.png
+        $fileName =  "";
+        $targetPath = "";
+        // we keep on randomizing until the file doesn't exist already
+        while($fileName == "" || file_exists($targetPath)) {
+            $nameinfo =  pathinfo($imgfile["name"]);
+            $randomStr = bin2hex(openssl_random_pseudo_bytes(4));
+            $fileName = $nameinfo["filename"] . "_" . $randomStr . "." . $nameinfo["extension"];
+            $targetPath = get_full_img_path($fileName);
+        }
+
         
         // TODO: Check that the file really is an image
 
@@ -19,9 +33,33 @@
         // Upload the image
         if (move_uploaded_file($imgfile["tmp_name"], $targetPath)) {
             // It worked!
-            return htmlspecialchars($imgfile["name"]);
+            return htmlspecialchars($fileName);
         } else {
             return "";
+        }
+    }
+
+    function delete_image($imgid) {
+        global $db;
+        // First get the image name that we need later
+        $statement = $db->prepare("SELECT image_path FROM images WHERE id = :img_id;");
+        $statement->bindParam(':img_id', $imgid);
+        if (!$statement->execute()) {
+            return; // An error, abort
+        }
+        $imgname = $statement->fetch()["image_path"];
+
+
+        // Then delete the image path from the database
+        $statement = $db->prepare("DELETE FROM images WHERE id = :img_id;");
+        $statement->bindParam(':img_id', $imgid);
+        if (!$statement->execute()) {
+            return; // An error happend when deleting, abort
+        }
+        // Now delete it from the file system
+        $imgpath = get_full_img_path($imgname);
+        if (file_exists($imgpath)) {
+            unlink($imgpath); // This deletes the file
         }
     }
 
@@ -33,7 +71,7 @@
         }
 
         // Now add the path in the database
-        $statement = $db->prepare("INSERT INTO images (product_id, image_path) VALUES (:product_id, :path)");
+        $statement = $db->prepare("INSERT INTO images (product_id, image_path) VALUES (:product_id, :path);");
         $statement->bindParam(':product_id',$pid);
         $statement->bindParam(':path',$path);
         $statement->execute();
@@ -71,6 +109,9 @@
         
         if ($_FILES["image"]) {
             handle_image($_POST["pid"]); // Add image to db and filesystem
+        }
+        if (isset($_POST["deleteimg"])) {
+            delete_image($_POST["deleteimg"]);
         }
         
     
