@@ -43,7 +43,7 @@ $statement->execute();
 while ($row = $statement->fetch()){
 	$r0 = $randomizer->getInt(-25, 25) / 10;
 	$r1 = $randomizer->getInt(-25, 25) / 10;
-	$path = "/foxstore/img/{$row['image_path']}";
+	$path = "/foxstore/img/products/{$row['image_path']}";
 	echo "
 		<input type='radio' name='reel-select' id='{$row['id']}' class='reel-select' checked>
 		<label for='{$row['id']}' class='images'>
