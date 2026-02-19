@@ -38,11 +38,12 @@
 	while($row = $query->fetch()){
 		$r0 = $randomizer->getInt(-25, 25) / 10;
 		$r1 = $randomizer->getInt(-25, 25) / 10;
+		$path = "/foxstore/img/{$row['image_path']}";
 		echo "
 			<a href=./product.php?id={$row["product_id"]}>
 				<figure class='polaroid'  style='--rotation: {$r0}deg'>
 				<div class='photo-area' style='--rotation: {$r1}deg'>
-				<img src='{$row["image_path"]}' alt='{$row["image_alt"]}'></div>
+				<img src='{$path}' alt='{$row['image_alt']}'> </div>
 				<figcaption>{$row["name"]} - {$row["price"]} - {$row["stock"]}</figcaption>
 				</figure>
 			</a>";
