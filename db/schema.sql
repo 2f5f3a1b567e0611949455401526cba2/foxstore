@@ -17,7 +17,7 @@ CREATE TABLE store.users(
 CREATE TABLE store.products (
 	product_id  BIGINT        UNSIGNED AUTO_INCREMENT,
 	name        VARCHAR(32)            NOT NULL,
-	description TINYTEXT,
+	description VARCHAR(512),
 	price       DECIMAL(9,2)  UNSIGNED NOT NULL,
 	stock       INT UNSIGNED  DEFAULT 0,
 

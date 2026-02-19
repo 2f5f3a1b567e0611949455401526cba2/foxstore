@@ -20,11 +20,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" href="./templates/image_reel/image_reel.css">
-	<link rel="stylesheet" href="./templates/polaroid/polaroid.css">
+	<link rel="stylesheet" href="./css/image_reel.css">
+	<link rel="stylesheet" href="./css/polaroid.css">
 </head>
 <body>
-	<?php include "header.php";?>
+	<?php include "./include/header.php";?>
 	<div class="frame">
 		<h1 id="product-title"><?=$row['name']?></h1>
 		<div id="product-image"></div>
