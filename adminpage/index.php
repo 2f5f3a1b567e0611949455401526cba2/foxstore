@@ -1,7 +1,7 @@
 <?php
-    require './includes/db.php';
-    require './includes/helper.php';
-    require './includes/checklogin.php';
+    require '../include/db.php';
+    require '../include/helper.php';
+    require '../include/checkadmin.php';
 ?>
 
 <!DOCTYPE html>
@@ -10,11 +10,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Affär admin</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../css/adminstyle.css">
 </head>
 <body>
     <main>
         <h1>Admin</h1>
+        <p><a href="../login/?logout=1">Log out</a></p>
         <table>
             <tr>
                 <td>ProductID</td>

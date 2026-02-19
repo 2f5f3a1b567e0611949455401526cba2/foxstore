@@ -1,10 +1,10 @@
 <?php
-    require_once './includes/helper.php';
-    if (session_status() === PHP_SESSION_NONE) {
+    require_once __DIR__.'/helper.php';
+    if (session_status() == PHP_SESSION_NONE) {
         // Start a session if there is none
         session_start();
     }
     if (!isset($_SESSION["admin"])) {
-        redirect('./login.php');
+        redirect('/foxstore/login/');
     }
 ?>

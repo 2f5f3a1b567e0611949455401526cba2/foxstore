@@ -1,14 +1,18 @@
 <?php
     
-    require "./includes/helper.php";
+    require "../include/helper.php";
     $error = "";
+    if (isset($_GET["logout"])) {
+        session_start();
+        session_destroy();
+    }
     if (post_contains(["username","password"])) {
-        require "./includes/db.php";
+        require "../include/db.php";
     
         $username = $_POST["username"];
         $password = $_POST["password"];
     
-        $statement = $db->prepare('SELECT * FROM admins WHERE username=:username');
+        $statement = $db->prepare('SELECT * FROM users WHERE username=:username');
         //$statement = $db->prepare('INSERT INTO admins (username, password) VALUES (:username, :password);');
         $statement->bindParam(':username', $username);
         $statement->execute();
@@ -16,8 +20,16 @@
             // Found matching user
             if (password_verify($password,$row["password"])) {
                 session_start();
-                $_SESSION['admin'] = true;
-                redirect("./");
+                $_SESSION['username'] = $username;
+                $_SESSION['loggedin'] = true;
+                if ($row["user_type"] == "admin") {
+                    $_SESSION['admin'] = true;
+                    redirect("../adminpage");
+                } else {
+                    unset($_SESSION['admin']);
+                    redirect("../");
+                }
+                
             }
         }
         $error = "Invalid username/password";
@@ -32,12 +44,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin login</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../css/adminstyle.css">
 </head>
 <body>
     <div>
-        <form action="./login.php" method="post" class="login vform">
-            <h1>Admin login</h1>
+        <form action="./" method="post" class="login vform">
+            <h1>Store login</h1>
             <div>
                 <label for="username">Användarnamn</label>
                 <input type="text" name="username" id="username">
