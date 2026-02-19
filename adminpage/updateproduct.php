@@ -4,7 +4,7 @@
     require '../include/checklogin.php';
 
     function get_full_img_path($imgname) {
-        $imgdir = "./userimg/";
+        $imgdir = "../img/";
         return $imgdir . $imgname;
     }
 

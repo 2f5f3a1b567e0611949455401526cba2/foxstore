@@ -17,7 +17,7 @@
     <?php
         foreach($images as $imageid => $image_path) {
             echo "<div>";
-            echo "<img src='./userimg/$image_path'>";
+            echo "<img src='../img/products/$image_path'>";
             echo "<button class='deletebutton' value='$imageid' name='deleteimg'>X</button>";
             echo "</div>";
         }

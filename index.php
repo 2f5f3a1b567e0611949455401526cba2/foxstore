@@ -18,5 +18,6 @@
             echo "<p><a href='login/'>Log in here</a></p>";
         }
     ?>
+    <p><a href="browse.php">Goto browse</a></p>
 </body>
 </html>

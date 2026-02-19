@@ -1,2 +1,2 @@
-adminpage/userimg/*
-!adminpage/userimg/imghere.txt
+/img/products/*
+!/img/products/examples
