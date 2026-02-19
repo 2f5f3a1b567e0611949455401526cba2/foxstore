@@ -6,7 +6,7 @@
     <title>Foxstore</title>
 </head>
 <body>
-    This is a great main page
+    <p>This is a great main page</p>
     <?php
         session_start();
         if (isset($_SESSION["loggedin"])) {
@@ -18,6 +18,6 @@
             echo "<p><a href='login/'>Log in here</a></p>";
         }
     ?>
-    <p><a href="browse.php">Goto browse</a></p>
+    <p><a href="browse.php">Go to browse</a></p>
 </body>
 </html>

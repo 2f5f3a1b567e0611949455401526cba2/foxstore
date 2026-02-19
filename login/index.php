@@ -43,7 +43,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin login</title>
+    <title>Store login</title>
     <link rel="stylesheet" href="../css/adminstyle.css">
 </head>
 <body>
@@ -51,14 +51,15 @@
         <form action="./" method="post" class="login vform">
             <h1>Store login</h1>
             <div>
-                <label for="username">Användarnamn</label>
+                <label for="username">Username</label>
                 <input type="text" name="username" id="username">
             </div>
             <div>
-                <label for="password">Lösenord</label>
+                <label for="password">Password</label>
                 <input type="password" name="password" id="password">
             </div>
-            <button type="submit">Logga in</button>
+            <button type="submit">Log in</button>
+            <p>Don't have an account? <a href="./signup.php">Sign up</a>!</p>
             <p class="error"><?=$error?></p>
         </form>
     </div>
