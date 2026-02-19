@@ -1,13 +1,12 @@
 <?php
-    require './includes/db_mod.php';
-//  require './includes/helper.php';
-// require './includes/checklogin.php';
+    require './include/db.php';
+//  require '/include/helper.php';
+// require '/include/checklogin.php';
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" href="header.css">
-	<link rel="stylesheet" href="polaroid2.css">
+	<link rel="stylesheet" href="./css/polaroid.css">
 	<link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -15,7 +14,7 @@
 	<!-- </header> -->
 	
 	<div>
-	<?php include 'header.php';?>
+	<?php include './include/header.php';?>
 	</div>
 
 
@@ -26,7 +25,7 @@
 	if ($sortmode != "price") {
 		$sortmode = "product_id";
 	};
-	$query = $db->prepare("SELECT product_id,name,price,stock,description FROM products ORDER BY $sortmode");
+	$query = $db->prepare("SELECT product_id,name,price,stock FROM products ORDER BY $sortmode");
 	$query->execute();
 	
 	echo "<div class='gallery'>";
@@ -36,10 +35,12 @@
 			$prices=$row["price"];
 			$stocks=$row["stock"];
 			$description=$row["description"];
+			echo "<a href=./product.php?id=$product_ids>";
 			echo "<figure class='polaroid'>";
-			echo "<div class='photo-area'> <a href=../product_page.php?id=$product_ids> <img src='Foxes/Fox5.jpg' alt='Arctic fox | WWF'> </a> </div>";
-			echo "<figcaption>$names - $prices  - $stocks</figcaption>";
-			echo"</figure>";
+			echo "<div class='photo-area'><img src='./img/Fox5.jpg' alt='Arctic fox | WWF'></div>";
+			echo "<figcaption>$names - $prices - $stocks</figcaption>";
+			echo "</figure>";
+			echo "</a>";
 	};
 	$db = null;
 	$query = null;

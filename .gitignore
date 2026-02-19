@@ -1,2 +1,2 @@
-*.webp
-*.jpg
+adminpage/userimg/*
+!adminpage/userimg/imghere.txt

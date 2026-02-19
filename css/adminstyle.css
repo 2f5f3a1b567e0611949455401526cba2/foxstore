@@ -34,10 +34,12 @@ html {
 
 .images img {
     width: 80px;
+    height: 80px;
     padding: 5px;
     background-color: #eee;
     border: 2px solid white;
     box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.205);
+    object-fit: cover;
 }
 
 .stock > input {
@@ -65,15 +67,35 @@ tr:nth-child(2n) {
     background-color: #eee;
 }
 
-form {
+td:last-child {
+    text-align: right;
+}
+
+
+.vform {
     margin-inline: auto;
-    padding: 1em;
-    border: 2px solid #eee;
     display: flex;
-    flex-direction: column;
     gap: 1em;
+    flex-direction: column;
     max-width: 400px;
+}
+
+.removeform, .vform {
     margin-top: 1em;
+}
+
+.removeform {
+    display: flex;
+    justify-content: end;
+}
+
+.removebutton {
+    color: red;
+    max-width: fit-content;
+}
+
+.error {
+    color: red;
 }
 
 .editform {
@@ -84,11 +106,6 @@ form {
 
 textarea {
     resize: none;
-}
-
-.login > h1 {
-    margin: 0;
-    font-weight: normal;
 }
 
 form > div {
