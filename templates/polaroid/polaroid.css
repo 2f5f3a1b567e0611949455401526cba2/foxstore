@@ -30,7 +30,7 @@ body {
 	box-sizing: border-box;
 	height:   calc(var(--polaroid-size) * 0.734231);
 	width:    calc(var(--polaroid-size) * 0.714387);
-	transform:  rotate(calc(var(--random-0-1, 0) * 2.5deg - 1.25deg));
+	transform:  rotate(calc((var(--random-0-1, 0) - 0.5) * 2.5deg));
 
 	margin: 0;
 	flex-shrink: 0;
@@ -48,7 +48,7 @@ body {
 	box-sizing: border-box;
 	height: var(--polaroid-size);
 	width: calc(var(--polaroid-size) * 0.823057);
-	transform: rotate(calc(var(--random-0-1, 0) * 2.5deg - 1.25deg));
+	transform:  rotate(calc((var(--random-0-1, 0) - 0.5) * 2.5deg));
 
 	padding: calc(var(--polaroid-size) * 0.054217);
 	margin: 0.25em 0.25em;
