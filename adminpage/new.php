@@ -1,5 +1,5 @@
 <?php
-require './includes/checklogin.php';
+require '../include/checklogin.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,7 +19,7 @@ require './includes/checklogin.php';
                 $product_name = "New product";
                 $product_desc = "";
                 $product_price = "4.99";
-                require "./includes/editform.php";
+                require "./include/editform.php";
             ?>
             <button>Create</button>
         </form>

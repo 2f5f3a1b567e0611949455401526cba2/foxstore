@@ -1,5 +1,5 @@
 <?php
-    require './includes/checklogin.php';
+    require '../include/checklogin.php';
     
     if (isset($_GET["edit_id"])) {
         $product_id = $_GET["edit_id"];
@@ -8,7 +8,7 @@
         exit;
     }
 
-    require './includes/db.php';
+    require '../include/db.php';
     $statement = $db->prepare('SELECT * FROM products WHERE product_id=:product_id');
     $statement->bindParam(':product_id', $product_id);
     $statement->execute();
@@ -34,7 +34,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit product <?=$product_name?></title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../css/adminstyle.css">
 </head>
 <body>
     <main>
@@ -43,7 +43,7 @@
         <form action="updateproduct.php" class="editform vform" method="post" enctype="multipart/form-data">
             <input type="hidden" name="pid" value="<?=$product_id?>">
             <?php
-                require "./includes/editform.php";
+                require "../include/editform.php";
                 ?>
             <button>Update</button>
         </form>

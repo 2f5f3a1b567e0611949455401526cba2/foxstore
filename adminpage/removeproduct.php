@@ -1,6 +1,6 @@
 <?php
-    require './includes/checklogin.php';
-    require './includes/db.php';
+    require '../include/checklogin.php';
+    require '../include/db.php';
     if (isset($_POST["pid"])) {
         
         $statement = $db->prepare("DELETE FROM products WHERE product_id = :product_id");

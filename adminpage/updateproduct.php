@@ -1,7 +1,7 @@
 <?php
-    require './includes/db.php';
-    require './includes/helper.php';
-    require './includes/checklogin.php';
+    require '../include/db.php';
+    require '../include/helper.php';
+    require '../include/checklogin.php';
 
     function get_full_img_path($imgname) {
         $imgdir = "./userimg/";
