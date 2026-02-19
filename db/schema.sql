@@ -6,10 +6,10 @@ CREATE DATABASE store;
 CREATE TABLE store.users(
 	user_id     BIGINT        UNSIGNED AUTO_INCREMENT,
 
-	user_type   ENUM("admin", "customer") DEFAULT("customer"),
+	user_type   ENUM("admin", "customer") DEFAULT("customer") NOT NULL,
  
 	username    VARCHAR(20)            NOT NULL,
-	password    TINYTEXT               NOT NULL,
+	password    BINARY(60)               NOT NULL,
  
 	PRIMARY KEY (user_id)
 );

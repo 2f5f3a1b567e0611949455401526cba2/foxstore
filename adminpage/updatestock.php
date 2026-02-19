@@ -1,11 +1,14 @@
 <?php
-    require './includes/checklogin.php';
-    require './includes/db.php';
+    require '../include/checklogin.php';
+    require '../include/db.php';
     if (isset($_POST["pid"]) && (isset($_POST["stock"]))) {
         $pid = $_POST["pid"];
         $newStock = $_POST["stock"];
         if (isset($_POST["change"])) {
             $newStock += $_POST["change"];
+        }
+        if ($newStock < 0) {
+            redirect('./');
         }
         
         $statement = $db->prepare("UPDATE products SET stock = :stock WHERE product_id = :product_id");
@@ -14,5 +17,5 @@
         $statement->execute();
         
     }
-    header('Location: ./')
+    header('Location: ./');
 ?>

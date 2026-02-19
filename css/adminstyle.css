@@ -34,10 +34,12 @@ html {
 
 .images img {
     width: 80px;
+    height: 80px;
     padding: 5px;
     background-color: #eee;
     border: 2px solid white;
     box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.205);
+    object-fit: cover;
 }
 
 .stock > input {
@@ -104,11 +106,6 @@ td:last-child {
 
 textarea {
     resize: none;
-}
-
-.login > h1 {
-    margin: 0;
-    font-weight: normal;
 }
 
 form > div {

@@ -1,7 +1,7 @@
 <?php
-    require './includes/db.php';
-    require './includes/helper.php';
-    require './includes/checklogin.php';
+    require '../include/db.php';
+    require '../include/helper.php';
+    require '../include/checkadmin.php';
 ?>
 
 <!DOCTYPE html>
@@ -10,11 +10,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Affär admin</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../css/adminstyle.css">
 </head>
 <body>
     <main>
         <h1>Admin</h1>
+        <p><a href="../login/?logout=1">Log out</a></p>
         <table>
             <tr>
                 <td>ProductID</td>
@@ -30,13 +31,14 @@
                     $id = $row["product_id"];
                     $price = $row["price"];
                     $stock = $row["stock"];
+                    $disabled = $stock == 0 ? "disabled" : "";
                     echo "<tr>";
                     echo "<td>$id</td>";
                     echo "<td>$pname</td>";
                     echo "<td>$$price</td>";
                     echo "<td>";
                     echo "<form class='stock' action='updatestock.php' method='post'>";
-                    echo "<input type='submit' style='display:none;'><button name='change' value='-1'>-</button><input type='text' name='stock' value='$stock'><button name='change' value='1'>+</button><input type='hidden' name='pid' value='$id'></form>";
+                    echo "<input type='submit' style='display:none;'><button name='change' value='-1' $disabled>-</button><input type='text' name='stock' value='$stock'><button name='change' value='1'>+</button><input type='hidden' name='pid' value='$id'></form>";
                     echo "</td>";
                     echo "<td><a href='edit.php?edit_id=$id'>Edit</a></td>";
                     echo "</tr>";

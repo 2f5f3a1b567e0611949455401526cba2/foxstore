@@ -4,7 +4,7 @@
         // Start a session if there is none
         session_start();
     }
-    if (!isset($_SESSION["loggedin"])) {
+    if (!isset($_SESSION["admin"])) {
         redirect('/foxstore/login/');
     }
 ?>
