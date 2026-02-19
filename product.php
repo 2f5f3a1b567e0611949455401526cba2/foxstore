@@ -26,6 +26,7 @@
 </head>
 <body>
 	<?php include "./include/header.php";?>
+	<div class="page">
 	<div class="frame">
 		<h1 id="product-title"><?=$row['name']?></h1>
 		<div id="product-image"></div>
@@ -35,7 +36,6 @@
 	<div class="reel">
 
 <?php
-
 $statement = $db->prepare('SELECT * FROM images WHERE product_id=:id');
 $statement->bindParam(':id', $prod_id);
 $statement->execute();
@@ -54,7 +54,7 @@ while ($row = $statement->fetch()){
 	";
 };
 ?>	
-
+	</div>
 	</div>
 </body>
 </html> 

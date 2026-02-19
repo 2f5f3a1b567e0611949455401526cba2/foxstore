@@ -25,8 +25,18 @@
 	gap: 0.5em 0.5em;
 }
 
-.frame > #product-title { grid-area: title; anchor-name: --product-title; margin: 0; }
-.frame > #product-desc  { grid-area: desc;  anchor-name: --product-desc;  }
+.frame > #product-title { 
+	grid-area: title; 
+	/* anchor-name: --product-title;  */
+	margin: 0; 
+	padding-top: 1.5rem;
+}
+.frame > #product-desc  {
+	grid-area: desc;  
+	anchor-name: --product-desc;  
+	padding: 2rem;
+	font-size: 2rem;
+}
 .frame > #product-image { grid-area: image; anchor-name: --product-image; }
 .frame > #product-extra { grid-area: extra; anchor-name: --product-extra; }
 

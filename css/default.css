@@ -17,3 +17,11 @@ body {
 	color: var(--foreground);
 	margin: 0;
 }
+
+.page {
+	max-width: 95rem;
+	box-sizing: border-box;
+	position: relative;
+	z-index: 0;
+	margin: 0 auto;	
+}
