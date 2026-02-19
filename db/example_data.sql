@@ -46,9 +46,9 @@ INSERT INTO store.products (name, description, price, stock) VALUES
 
 INSERT INTO store.images (product_id, image_path, image_alt, image_cap) VALUES
 -- Chairman
-(1, "/foxstore/img/chairman.jpg", "image of Cave Johnson the best Chairman of them all", "Cave Johnson"),
-(1, "/foxstore/img/the_chair.png", "the most powerful chair in existance", "THE CHAIR"),
-(2, "/foxstore/img/toothbrush.webp", "a toothbrush that could havegone to the moon", "brush brush, much rocket");
+(1, "/foxstore/img/example/chairman.jpg", "image of Cave Johnson the best Chairman of them all", "Cave Johnson"),
+(1, "/foxstore/img/example/the_chair.png", "the most powerful chair in existance", "THE CHAIR"),
+(2, "/foxstore/img/example/stoothbrush.webp", "a toothbrush that could havegone to the moon", "brush brush, much rocket");
 
 COMMIT;
 
