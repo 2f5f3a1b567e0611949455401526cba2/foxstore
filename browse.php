@@ -1,4 +1,7 @@
 <?php
+	use Random\Randomizer;
+	$randomizer = new Randomizer();
+
     require './include/db.php';
 //  require '/include/helper.php';
 // require '/include/checklogin.php';
@@ -10,37 +13,39 @@
 	<link href="https://fonts.googleapis.com/css2?family=Caveat&display=swap" rel="stylesheet">
 </head>
 <body>
-	<!-- <header id="main-header" > -->
-	<!-- </header> -->
-	
-	<div>
+	<!-- Start of Page header-->
 	<?php include './include/header.php';?>
-	</div>
-
-
-		<!-- Start of Page header-->
-		<!-- Start of Page Content -->
-		<?php
+	<div class='gallery'>
+	<!-- Start of Page Content -->
+	<?php
 	$sortmode = $_GET["sort"];
 	if ($sortmode != "price") {
 		$sortmode = "product_id";
 	};
-	$query = $db->prepare("SELECT product_id,name,price,stock FROM products ORDER BY $sortmode");
+
+	$query = $db->prepare(
+		"SELECT p.*, i.* FROM products p
+		LEFT JOIN images i ON i.id = (
+			SELECT images.id 
+			FROM images
+			WHERE images.product_id = p.product_id 
+			LIMIT 1
+		) ORDER BY :sortmode"
+	);
+	$query->bindParam(':sortmode', $sortmode);
 	$query->execute();
 	
-	echo "<div class='gallery'>";
 	while($row = $query->fetch()){
-			$product_ids=$row["product_id"];
-			$names=$row["name"];
-			$prices=$row["price"];
-			$stocks=$row["stock"];
-			$description=$row["description"];
-			echo "<a href=./product.php?id=$product_ids>";
-			echo "<figure class='polaroid'>";
-			echo "<div class='photo-area'><img src='./img/Fox5.jpg' alt='Arctic fox | WWF'></div>";
-			echo "<figcaption>$names - $prices - $stocks</figcaption>";
-			echo "</figure>";
-			echo "</a>";
+		$r0 = $randomizer->getInt(-25, 25) / 10;
+		$r1 = $randomizer->getInt(-25, 25) / 10;
+		echo "
+			<a href=./product.php?id={$row["product_id"]}>
+				<figure class='polaroid'  style='--rotation: {$r0}deg'>
+				<div class='photo-area' style='--rotation: {$r1}deg'>
+				<img src='{$row["image_path"]}' alt='{$row["image_alt"]}'></div>
+				<figcaption>{$row["name"]} - {$row["price"]} - {$row["stock"]}</figcaption>
+				</figure>
+			</a>";
 	};
 	$db = null;
 	$query = null;
