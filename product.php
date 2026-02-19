@@ -1,5 +1,6 @@
 <?php
-
+	use Random\Randomizer;
+	$randomizer = new Randomizer();
 	include "./include/db.php";
 	// Get product ID
 	$prod_id = $_GET["id"];
@@ -34,15 +35,19 @@
 	<div class="reel">
 
 <?php
+
 $statement = $db->prepare('SELECT * FROM images WHERE product_id=:id');
 $statement->bindParam(':id', $prod_id);
 $statement->execute();
 while ($row = $statement->fetch()){
+	$r0 = $randomizer->getInt(-25, 25) / 10;
+	$r1 = $randomizer->getInt(-25, 25) / 10;
 	echo "
 		<input type='radio' name='reel-select' id='{$row['id']}' class='reel-select' checked>
 		<label for='{$row['id']}' class='images'>
-			<figure class='polaroid'>
-				<div class='photo-area'> <img src='{$row['image_path']}' alt='{$row['image_alt']}'> </div>
+			<figure class='polaroid'  style='--rotation: {$r0}deg'>
+				<div class='photo-area' style='--rotation: {$r1}deg'>
+				<img src='{$row['image_path']}' alt='{$row['image_alt']}'> </div>
 				<figcaption>{$row['image_cap']}</figcaption>
 			</figure>
 		</label>

@@ -1,17 +1,8 @@
 /* Used for psudo random*/
-@import url("../math/random.css");
+@import url("random.css");
+/* @import url("default.css"); */
 
 :root {
-	--background: #000000;
-	--page-foreground: white;
-	--page-background: #181818;
-	--content-foreground: #ffffff;
-	--content-background: #181818;
-
-	--polaroid-size: 10.752cm;
-	--polaroid-sepia: 30%;
-	--polaroid-background: #272727;
-	--paper-color: #FAFCDE;
 
 	/* Size of image  */
 	--reel-width-focus:  calc(var(--polaroid-size) * 0.823057);
@@ -20,21 +11,7 @@
 	--reel-scale: 0.5;
 	--reel-width:  calc(var(--reel-width-focus)  * var(--reel-scale));
 	--reel-height: calc(var(--reel-height-focus) * var(--reel-scale));
-
 }
-
-body {
-	background: var(--background);
-	margin: 0;
-	--index: 0;
-}
-
-/* Test element representing a image */
-.example_image { 
-	height: var(--reel-height-focus); 
-	width: var(--reel-width-focus); 
-}
-
 
 /* Frame; Declares how the reel elements are organized when focused */
 .frame {

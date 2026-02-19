@@ -1,57 +1,57 @@
 .title {
-    border-color: bisque;
-    text-indent: 1px;
-    text-shadow: -2px -1px 0 rgb(152, 203, 247);
-    color:rgb(68, 104, 104);
-    font-family: fantasy;
-    font-size: 17px;
-  font-weight:900;
-  transform: rotate(3deg);
-    margin-trim: all;
-    text-rendering:geometricPrecision;
-    padding: 10px;
-  text-overflow:ellipsis;  
-  width: fit-content;  
+	border-color: bisque;
+	text-indent: 1px;
+	text-shadow: -2px -1px 0 rgb(152, 203, 247);
+	color:rgb(68, 104, 104);
+	font-family: fantasy;
+	font-size: 17px;
+	font-weight:900;
+	transform: rotate(3deg);
+	margin-trim: all;
+	text-rendering:geometricPrecision;
+	padding: 10px;
+	text-overflow:ellipsis;
+	width: fit-content;
 
 }
 
 .Header_style {
-  box-shadow: 5cm;
-  text-align: left;
-  background-color:rgb(223, 222, 202);
+	box-shadow: 5cm;
+	text-align: left;
+	background-color:rgb(223, 222, 202);
 }
 
 .Header_large {
-  display: inline-flex;
-  align-items:normal;
-  flex-grow: 3;
-  flex-shrink: 1;
-  border-color: black;
-  margin-top: -20px;
-  padding-bottom: 20px;
+	display: inline-flex;
+	align-items:normal;
+	flex-grow: 3;
+	flex-shrink: 1;
+	border-color: black;
+	margin-top: -20px;
+	padding-bottom: 20px;
 }
 
 .Header_small {
-  display: flex;
-  flex-flow: row wrap;
-  transform: rotate(7deg);
-  transform-origin: 0;
-  text-shadow: 1px -1px 0 black; 
-  color:rgb(70, 122, 71);
-  font-family: fantasy;
-  font-weight:900;
-  font-size: 20px;
-  padding-left: 10px;
-  padding-right: 20px;
+	display: flex;
+	flex-flow: row wrap;
+	transform: rotate(7deg);
+	transform-origin: 0;
+	text-shadow: 1px -1px 0 black; 
+	color:rgb(70, 122, 71);
+	font-family: fantasy;
+	font-weight:900;
+	font-size: 20px;
+	padding-left: 10px;
+	padding-right: 20px;
 }
 
 
 header {
-  a:hover {
-    color: rgb(141, 228, 153);
-  }
+	a:hover {
+	color: rgb(141, 228, 153);
+	}
 }
 
 a {
-  color: forestgreen;
+	color: forestgreen;
 }
