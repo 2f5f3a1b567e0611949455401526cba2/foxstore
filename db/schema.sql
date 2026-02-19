@@ -17,7 +17,7 @@ CREATE TABLE store.users(
 CREATE TABLE store.products (
 	product_id  BIGINT        UNSIGNED AUTO_INCREMENT,
 	name        VARCHAR(32)            NOT NULL,
-	description TINYTEXT,
+	description VARCHAR(512),
 	price       DECIMAL(9,2)  UNSIGNED NOT NULL,
 	stock       INT UNSIGNED  DEFAULT 0,
 
@@ -64,6 +64,8 @@ CREATE TABLE store.images (
 	id          BIGINT        UNSIGNED AUTO_INCREMENT,
 	product_id  BIGINT        UNSIGNED NOT NULL,
 	image_path  TINYTEXT               NOT NULL,
+	image_alt   TINYTEXT,
+	image_cap   TINYTEXT,
 	FOREIGN KEY (product_id) REFERENCES products(product_id)
 		ON DELETE CASCADE
 		ON UPDATE CASCADE,
