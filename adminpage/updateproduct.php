@@ -4,7 +4,7 @@
     require '../include/checklogin.php';
 
     function get_full_img_path($imgname) {
-        $imgdir = "../img/";
+        $imgdir = "../img/products/";
         return $imgdir . $imgname;
     }
 
@@ -101,25 +101,27 @@
         $statement->bindParam(':name', $name);
         $statement->bindParam(':desc', $desc);
         $statement->bindParam(':price', $price);
+        $pid = 0;
         if (!$createNew) {
             $pid = $_POST["pid"];
             $statement->bindParam(':product_id', $pid);
         }
         $statement->execute();
+        if ($createNew) {
+            // Get the new pid
+            $pid = $db->lastInsertId();
+        }
         
         if ($_FILES["image"]) {
-            handle_image($_POST["pid"]); // Add image to db and filesystem
+            
+            handle_image($pid); // Add image to db and filesystem
         }
         if (isset($_POST["deleteimg"])) {
             delete_image($_POST["deleteimg"]);
         }
         
-    
-        if ($createNew) {
-            redirect('./');
-        } else {
-            redirect("./edit.php?edit_id=$pid");
-        }
+        redirect("./edit.php?edit_id=$pid");
+        
 
     }
 
