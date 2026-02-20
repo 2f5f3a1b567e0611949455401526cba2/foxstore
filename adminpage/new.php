@@ -7,7 +7,7 @@ require '../include/checklogin.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create new product</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../css/adminstyle.css">
 </head>
 <body>
     <main>
@@ -19,7 +19,8 @@ require '../include/checklogin.php';
                 $product_name = "New product";
                 $product_desc = "";
                 $product_price = "4.99";
-                require "./include/editform.php";
+                $images = [];
+                require "../include/editform.php";
             ?>
             <button>Create</button>
         </form>
