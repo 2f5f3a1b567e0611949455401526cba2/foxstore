@@ -18,10 +18,14 @@
 	<div class='gallery'>
 	<!-- Start of Page Content -->
 	<?php
-	$sortmode = $_GET["sort"];
-	if ($sortmode != "price") {
-		$sortmode = "product_id";
+	if (isset($_GET["sort"])){
+		$sortmode = $sortmode = $_GET["sort"];
+	}
+	else {
+	 $sortmode ="product_id";
 	};
+	$search = "%%";
+	//$search = $_Get["search"];
 
 	$query = $db->prepare(
 		"SELECT p.*, i.* FROM products p
@@ -30,9 +34,10 @@
 			FROM images
 			WHERE images.product_id = p.product_id 
 			LIMIT 1
-		) ORDER BY :sortmode"
+		) WHERE p.name LIKE :search ORDER BY :sortmode"
 	);
 	$query->bindParam(':sortmode', $sortmode);
+	$query->bindParam(':search', $search);
 	$query->execute();
 	
 	while($row = $query->fetch()){
@@ -53,3 +58,4 @@
 	</div>
 </body>
 </html>
+
