@@ -9,42 +9,57 @@
 	transform: rotate(3deg);
 	margin-trim: all;
 	text-rendering:geometricPrecision;
-	padding: 10px;
 	text-overflow:ellipsis;
 	width: fit-content;
 
 }
 
-.Header_style {
+.header {
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+	gap: 25px;
+	align-items: left;
 	box-shadow: 5cm;
 	text-align: left;
 	background-color:rgb(223, 222, 202);
+	padding: 10px;
 }
 
-.Header_large {
-	display: inline-flex;
-	align-items:normal;
-	flex-grow: 3;
-	flex-shrink: 1;
-	border-color: black;
-	margin-top: -20px;
-	padding-bottom: 20px;
-}
-
-.Header_small {
+.mainbar {
 	display: flex;
-	flex-flow: row wrap;
-	transform: rotate(7deg);
+	gap: 25px;
+}
+
+.rotate a {
 	transform-origin: 0;
 	text-shadow: 1px -1px 0 black; 
 	color:rgb(70, 122, 71);
 	font-family: fantasy;
 	font-weight:900;
 	font-size: 20px;
-	padding-left: 10px;
-	padding-right: 20px;
 }
 
+
+.rotate {
+	transform: rotate(7deg);
+	
+}
+
+.padding {
+	flex-grow: 1;
+}
+
+.profileinfo {
+	padding-inline: 15px;
+}
+.profileinfo > p {
+	margin-block: 2px;
+	text-align: right;
+}
+.username {
+	font-weight: bold;
+}
 
 header {
 	a:hover {

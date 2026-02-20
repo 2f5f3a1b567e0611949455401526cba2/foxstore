@@ -11,7 +11,8 @@ CREATE TABLE store.users(
 	username    VARCHAR(20)            NOT NULL,
 	password    BINARY(60)               NOT NULL,
  
-	PRIMARY KEY (user_id)
+	PRIMARY KEY (user_id),
+	UNIQUE (username)
 );
 
 CREATE TABLE store.products (
