@@ -7,24 +7,28 @@
         require "../include/db.php";
     
         $username = $_POST["username"];
-        if ($_POST["password"] != $_POST["password2"]) {
-            $error = "Missmatching passwords";
-            return;
-        }
-        $password = password_hash($_POST["password"],PASSWORD_BCRYPT);
-        $statement = $db->prepare('INSERT INTO users (username,password) VALUES (:username, :password)');
-        $statement->bindParam(':username', $username);
-        $statement->bindParam(':password', $password);
-        if ($statement->execute()) {
-            // Sucess!
-            session_start();
-            $_SESSION["username"] = $username;
-            $_SESSION["loggedin"] = true;
-            redirect("../"); // redirect to main page
-
+        if ($_POST["password"] == $_POST["password2"]) {
+            $password = password_hash($_POST["password"],PASSWORD_BCRYPT);
+            $statement = $db->prepare('INSERT INTO users (username,password) VALUES (:username, :password)');
+            $statement->bindParam(':username', $username);
+            $statement->bindParam(':password', $password);
+            try {
+                if ($statement->execute()) {
+                    // Sucess!
+                    session_start();
+                    $_SESSION["username"] = $username;
+                    $_SESSION["loggedin"] = true;
+                    redirect("../"); // redirect to main page
+                } else {
+                    $error = "An error occured while creating the account";
+                }
+            }
+            catch (Exception $e) {
+                $error = "An error occured while creating the account";
+            }
+            
         } else {
-
-            $error = "Invalid username/password";
+            $error = "Missmatching passwords";
         }
         
         
