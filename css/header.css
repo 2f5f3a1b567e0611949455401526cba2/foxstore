@@ -9,7 +9,6 @@
 	transform: rotate(3deg);
 	margin-trim: all;
 	text-rendering:geometricPrecision;
-	padding: 10px;
 	text-overflow:ellipsis;
 	width: fit-content;
 
@@ -17,11 +16,19 @@
 
 .header {
 	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
 	gap: 25px;
-	align-items: center;
+	align-items: left;
 	box-shadow: 5cm;
 	text-align: left;
 	background-color:rgb(223, 222, 202);
+	padding: 10px;
+}
+
+.mainbar {
+	display: flex;
+	gap: 25px;
 }
 
 .rotate a {
