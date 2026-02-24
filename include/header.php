@@ -27,7 +27,7 @@
 					// Start a session if there is none
 					session_start();
 				}
-				if (isset($_SESSION["loggedin"])) {
+				if (isset($_SESSION["logged_in"])) {
 					$user = $_SESSION["username"];
 					echo "<p>You're logged in as <span class='username'>$user</span></p>";
 					echo "<p><a href='login/?logout=1'>Log out</a></p>";

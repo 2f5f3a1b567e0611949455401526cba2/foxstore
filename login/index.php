@@ -21,7 +21,8 @@
             if (password_verify($password,$row["password"])) {
                 session_start();
                 $_SESSION['username'] = $username;
-                $_SESSION['loggedin'] = true;
+                $_SESSION['logged_in'] = true;
+                $_SESSION['user_id'] = $row["user_id"];
                 if ($row["user_type"] == "admin") {
                     $_SESSION['admin'] = true;
                     redirect("../adminpage");

@@ -17,7 +17,8 @@
                     // Sucess!
                     session_start();
                     $_SESSION["username"] = $username;
-                    $_SESSION["loggedin"] = true;
+                    $_SESSION["logged_in"] = true;
+                    $_SESSION["user_id"] = $db->lastInsertId();
                     redirect("../"); // redirect to main page
                 } else {
                     $error = "An error occured while creating the account";
