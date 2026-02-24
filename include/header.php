@@ -14,10 +14,10 @@
 			<a href="browse.php">Browse </a>  
 		</div>
 		<div class="rotate">
-			<a href="/test/track.php">Track Order</a>
+			<a href="track.php">Track Order</a>
 		</div>
 		<div class="rotate">
-			<a href="/test/cart.php">Cart</a>  
+			<a href="cart.php">Cart</a>  
 		</div>
 		<div class="padding"></div>
 		<div class="profileinfo">

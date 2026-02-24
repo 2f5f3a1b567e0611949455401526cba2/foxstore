@@ -53,9 +53,11 @@ while ($row = $statement->fetch()){
 		</label>
 	";
 };
-?>	
+?>
+</div>
+<?=include "./include/comments.php";?>
+	
 
-	</div>
 </body>
 </html> 
 
