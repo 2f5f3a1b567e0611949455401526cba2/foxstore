@@ -9,9 +9,10 @@
     <p>This is a great main page</p>
     <?php
         session_start();
-        if (isset($_SESSION["loggedin"])) {
+        if (isset($_SESSION["logged_in"])) {
             $user = $_SESSION["username"];
-            echo "<p>You're logged in as $user</p>";
+            $userid = $_SESSION["user_id"];
+            echo "<p>You're logged in as $user, id $userid</p>";
             echo "<p><a href='login/?logout=1'>Log out</a></p>";
         } else {
             echo "<p>You are not logged in</p>";
