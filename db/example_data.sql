@@ -3,6 +3,9 @@ START TRANSACTION;
 INSERT INTO store.users (user_type, username, password) VALUES
 -- user : "admin", pass: "elvis"
 ("admin", "admin", 0x243279243130243143703973494643325444484d507433593658647675707a6b784c4d5671335654766c68324359476f745a577a3258746f547a4736);
+-- user : "marie", pass: "123"
+("customer", "marie", 0x243279243130244553705767317449364331394133546b5178416e614f362f303865467343646f54372f517276496642716d6239754b31774b565565);
+
 
 INSERT INTO store.products (name, description, price, stock) VALUES
 ("Example Product 1 Chairman", "Chairman, a gentelman that Shares with the people without position. The Chairman is mostly made out of Wood, please don't mind it. IKEA made them like this.\nThis is a Example Description for Example product 1 written in the example_data.sql file.", 13.37, 10),
