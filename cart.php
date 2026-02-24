@@ -3,20 +3,28 @@
 <head>
 </head>
 <body>
-	Hello world
-</body>
-</html>
-
 <?php
+	/* ini_set('display_errors', 1); */
+	/* ini_set('display_startup_errors', 1); */
+	/* error_reporting(E_ALL); */
+
+
 	include "./include/db.php";
 	include "./include/helper.php";
-	// Get product ID
-	if (!isset($_SESSION["user_id"]) or !post_contains(["id", "count"])){
-		redirect("./browse.php?err=session_or_params_not_set");
-	}
 
+	if (session_status() == PHP_SESSION_NONE) {
+		session_start();
+	}
+	// Get product ID
+	if (!post_contains(["id", "count"])){
+		redirect("./browse.php?err=params_invalid");
+	}
 	$id  = $_POST["id"];
 	$cnt = $_POST["count"];
+	if (!isset($_SESSION["user_id"])){
+		redirect("./product.php?id=$id&err=session_not_set");
+	}
+
 	$user_id = $_SESSION["user_id"];
 
 	$statement = $db->prepare('SELECT price stock FROM products WHERE product_id=:id');
@@ -35,3 +43,5 @@
 	$statement->execute();
 	redirect("./product.php?id=$id");
 ?>
+</body>
+</html>
