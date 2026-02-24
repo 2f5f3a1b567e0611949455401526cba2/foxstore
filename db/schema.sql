@@ -30,8 +30,7 @@ CREATE TABLE store.orders (
 	name        TINYTEXT               NOT NULL,
 	address     TINYTEXT               NOT NULL,
 
-	status      ENUM("cart", "unpaid", "paid", "packaged", "delivered")
-		DEFAULT("cart"),
+	status      ENUM("unpaid", "paid", "packaged", "delivered"),
 
 	time        DATETIME               NOT NULL DEFAULT(CURRENT_TIMESTAMP()),
 	user_id     BIGINT        UNSIGNED NOT NULL,
@@ -48,6 +47,7 @@ CREATE TABLE store.order_items (
 	order_id    BIGINT        UNSIGNED NOT NULL,
 	product_id  BIGINT        UNSIGNED,
 	amount      INT           UNSIGNED NOT NULL,
+	price       DECIMAL(9,2)  UNSIGNED NOT NULL,
 
 	FOREIGN KEY (order_id)   REFERENCES orders(order_id)
 		ON DELETE CASCADE
@@ -68,6 +68,25 @@ CREATE TABLE store.images (
 	image_cap   TINYTEXT,
 	FOREIGN KEY (product_id) REFERENCES products(product_id)
 		ON DELETE CASCADE
+		ON UPDATE CASCADE,
+
+	PRIMARY KEY (id)
+);
+
+
+
+CREATE TABLE store.cart (
+	id          BIGINT        UNSIGNED AUTO_INCREMENT,
+	user_id     BIGINT        UNSIGNED NOT NULL,
+	product_id  BIGINT        UNSIGNED,
+	amount      INT           UNSIGNED NOT NULL,
+
+	FOREIGN KEY (user_id)    REFERENCES cart(user_id)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
+
+	FOREIGN KEY (product_id) REFERENCES products(product_id)
+		ON DELETE SET NULL
 		ON UPDATE CASCADE,
 
 	PRIMARY KEY (id)

@@ -49,6 +49,5 @@ INSERT INTO store.images (product_id, image_path, image_alt, image_cap) VALUES
 (1, "./example/chairman.jpg", "image of Cave Johnson the best Chairman of them all", "Cave Johnson"),
 (1, "./example/the_chair.png", "the most powerful chair in existance", "THE CHAIR"),
 (2, "./example/toothbrush.webp", "a toothbrush that could havegone to the moon", "brush brush, much rocket");
-
 COMMIT;
 

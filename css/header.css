@@ -10,7 +10,6 @@
 	margin-trim: all;
 	text-rendering:geometricPrecision;
 	padding: 10px;
-	text-overflow:ellipsis;
 	width: fit-content;
 
 }
@@ -18,17 +17,13 @@
 .Header_style {
 	box-shadow: 5cm;
 	text-align: left;
-	background-color:rgb(223, 222, 202);
+	background-color: rgb(223, 222, 202);
 }
 
-.Header_large {
-	display: inline-flex;
-	align-items:normal;
-	flex-grow: 3;
-	flex-shrink: 1;
-	border-color: black;
-	margin-top: -20px;
-	padding-bottom: 20px;
+.Header_list {
+	display:flex;
+	flex-wrap: wrap;
+	margin-bottom: 1.3rem;
 }
 
 .Header_small {
@@ -45,13 +40,7 @@
 	padding-right: 20px;
 }
 
-
-header {
-	a:hover {
+.Header_list > a:hover {
 	color: rgb(141, 228, 153);
-	}
 }
 
-a {
-	color: forestgreen;
-}
