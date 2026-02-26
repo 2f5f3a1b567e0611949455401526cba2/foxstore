@@ -10,35 +10,33 @@ html {
 
 .images {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     gap: 10px;
 }
 
 .images > div {
-    position: relative;
-}
-
-
-.deletebutton {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    background-color: unset;
-    border: none;
-    color: red;
-    &:hover {
-        background-color: red;
-        color: white;
-    }
-}
-
-.images img {
-    width: 80px;
-    height: 80px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
     padding: 5px;
     background-color: #eee;
     border: 2px solid white;
     box-shadow: 2px 2px 7px rgba(0, 0, 0, 0.205);
+}
+
+.imginput {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: space-between;
+}
+.imginput label {
+    font-size: smaller;
+}
+
+.images img {
+    width: 100px;
+    height: 100px;
     object-fit: cover;
 }
 
@@ -89,6 +87,10 @@ td:last-child {
     justify-content: end;
 }
 
+.imginput > .removebutton {
+    align-self: flex-end;
+}
+
 .removebutton {
     color: red;
     max-width: fit-content;
@@ -108,7 +110,7 @@ textarea {
     resize: none;
 }
 
-form > div {
+form > div, .imginput > div {
     display: flex;
     flex-direction: column;
 }
