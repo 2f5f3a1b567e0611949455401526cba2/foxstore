@@ -39,6 +39,34 @@
         }
     }
 
+    function handle_alt_text($pid) {
+        global $db;
+        // First get all image ids for this product
+        $statement = $db->prepare('SELECT * FROM images WHERE product_id=:product_id');
+        $statement->bindParam(':product_id', $pid);
+        $statement->execute();
+        while(($row = $statement->fetch())) {
+            $imgid = $row["id"];
+            $alttext = "";
+            $captext = "";
+            if (isset($_POST["imgalt_$imgid"])) {
+                $alttext = $_POST["imgalt_$imgid"];
+            }
+            if (isset($_POST["imgcap_$imgid"])) {
+                $captext = $_POST["imgcap_$imgid"];
+            }
+            if ($alttext != "" || $captext != "") {
+                // Update db
+                $statement2 = $db->prepare("UPDATE images SET image_alt = :alttext, image_cap = :captext WHERE id = :img_id");
+                $statement2->bindParam(":alttext",$alttext);
+                $statement2->bindParam(":captext",$captext);
+                $statement2->bindParam(":img_id",$imgid);
+                $statement2->execute();
+            }
+        }
+
+    }
+
     function delete_image($imgid) {
         global $db;
         // First get the image name that we need later
@@ -113,9 +141,9 @@
         }
         
         if ($_FILES["image"]) {
-            
             handle_image($pid); // Add image to db and filesystem
         }
+        handle_alt_text($pid);
         if (isset($_POST["deleteimg"])) {
             delete_image($_POST["deleteimg"]);
         }

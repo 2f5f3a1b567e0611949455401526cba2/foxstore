@@ -20,9 +20,9 @@
     $statement = $db->prepare('SELECT * FROM images WHERE product_id=:product_id');
     $statement->bindParam(':product_id', $product_id);
     $statement->execute();
-    $images = []; // Associative array mapping image id to image path
+    $images = []; // Associative array mapping image id to [imagepath, alttext, captext]
     while(($row = $statement->fetch())) {
-        $images[$row["id"]] = $row["image_path"];
+        $images[$row["id"]] = ["path"=>$row["image_path"],"alt"=>$row["image_alt"],"cap"=>$row["image_cap"]];
     }
 
 
