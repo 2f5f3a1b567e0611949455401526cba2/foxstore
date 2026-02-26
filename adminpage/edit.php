@@ -13,16 +13,16 @@
     $statement->bindParam(':product_id', $product_id);
     $statement->execute();
     $row = $statement->fetch();
-    $product_name = $row["name"];
-    $product_desc = $row["description"];
-    $product_price = $row["price"];
+    $product_name = htmlspecialchars($row["name"]);
+    $product_desc = htmlspecialchars($row["description"]);
+    $product_price = htmlspecialchars($row["price"]);
 
     $statement = $db->prepare('SELECT * FROM images WHERE product_id=:product_id');
     $statement->bindParam(':product_id', $product_id);
     $statement->execute();
     $images = []; // Associative array mapping image id to [imagepath, alttext, captext]
     while(($row = $statement->fetch())) {
-        $images[$row["id"]] = ["path"=>$row["image_path"],"alt"=>$row["image_alt"],"cap"=>$row["image_cap"]];
+        $images[$row["id"]] = ["path"=>htmlspecialchars($row["image_path"]),"alt"=>htmlspecialchars($row["image_alt"]),"cap"=>htmlspecialchars($row["image_cap"])];
     }
 
 
@@ -35,6 +35,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit product <?=$product_name?></title>
     <link rel="stylesheet" href="../css/adminstyle.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/default.css">
 </head>
 <body>
     <main>

@@ -44,8 +44,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create an account</title>
     <link rel="stylesheet" href="../css/adminstyle.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/default.css">
 </head>
 <body>
+    <?php
+        require '../include/header.php';
+    ?>
     <div>
         <form action="./signup.php" method="post" class="login vform">
             <h1>Store signup</h1>
