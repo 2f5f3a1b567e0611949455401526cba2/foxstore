@@ -1,0 +1,114 @@
+:root{
+	--ifcart-width: 48; /*ch*/
+	--ifcart-height: 32; /*em*/
+	--ifcart-font-size: 16px;
+	--ifcart-line-height: 1.2;
+
+	--font-size: 24px;
+	--line-height: 1.2;
+
+	--tmplopt-font-size: 16px;
+	--tmplopt-line-height: 1.2;
+}
+
+*{all:unset;display:revert;box-sizing:border-box;justify:center}
+html{font-size:var(--font-size);line-height:var(--line-height);font-family:monospace}
+header {width:auto;gap:2ch;padding:1em 1ch;height:1em;position:relative}
+.page {max-width:80ch;margin:0 auto;height:100vh}
+.noscript {display:none}
+
+/* Dropdowns Style */
+.dd {display:none;position:absolute;top:100%}
+.dd,.box {background:var(--bg);color:var(--fg);padding:0.5em 0.5ch;border:1px solid var(--br);border-radius:0.5ch}
+
+/* Form Style */ 
+form > li {display:flex;gap:1ch;align-content:center;}
+
+/* Header Drop Down:s */
+header > input[type='radio']:checked ~ :is(#ddcart, .dd){display:block !important}
+
+.overlay{left:0}
+header>input[type='radio']:checked~p>.overlay{pointer-events:auto} 
+header>input[type='radio']:checked~input[type='radio']~p>.overlay,
+.overlay{pointer-events:none}
+
+header > input[type='radio']:checked ~ input[type='radio'] ~ :is(#ddcart, .dd),
+.hidden {visibility:collapse;position:absolute}
+
+/* Utility */
+.invis {position:absolute;color:#00000000}
+.rel{position:relative}
+
+/* Cart */
+.cart { width: 40ch; height: 20em; position: absolute; background:unset; border:unset; padding:0;}
+#ifcart-body { font-size: var(--ifcart-font-size); line-height: var(--ifcart-line-height); }
+
+/* Reel */
+#ifreel {	width: 40ch; height: 30em; grid-area:reel;}
+
+/* Buttons */
+label, a, button {
+	-webkit-user-select: none; /* Safari */
+	-ms-user-select: none;     /* IE 10 and 11 */
+	user-select: none;         /* Standard syntax */
+	height: 1em;
+	flex: 0 0 auto;
+	white-space: nowrap;
+}
+button:active, label:active, a:active {font-weight: bold;}
+
+/* Browse */
+.browseimg {
+	width: calc(20ch - 1lh);
+  height: calc(20ch - 1lh);
+  aspect-ratio: 1 / 1;
+	margin: 0 auto;
+  
+  object-fit: cover;
+  object-position: center;
+  
+  display: block;
+}
+
+
+.border-top {
+	grid-area: comm;
+	margin:1ch; 
+	border-top: 1px solid var(--br); 
+	position: relative; 
+	margin-top: 0.5em; 
+	padding-top: 1em;
+}
+.border-top > h1 {
+	position:absolute; top:-0.5em; left:1ch; 
+	padding: 0 0.5ch; background: var(--bg);
+}
+
+input{display:flex;height:1em;justify-content:center;padding-top:4px;}
+input[type='text'],input[type='password']{width:14ch;}
+input[type='color']{width:1ch;vertical-align:top;padding:0 0 4px 0;}
+
+.num,.right {text-align: right;}
+.left {text-align: left;}
+.vcenter {display:flex;align-items:center;}
+
+.str {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.table {
+	display: grid;
+}
+
+#prod-main {
+display: grid;
+grid-template:
+  "reel form" min-content
+  "reel desc" 1fr
+  "comm comm" auto / 1fr 1fr;
+}
+
+/* Fixes warn about overflow visible*/
+img{overflow:clip;overflow-clip-margin:content-box;} 
