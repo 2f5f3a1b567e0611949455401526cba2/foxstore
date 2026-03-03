@@ -11,6 +11,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Affär admin</title>
     <link rel="stylesheet" href="../css/adminstyle.css">
+    <link rel="stylesheet" href="../css/header.css">
+    <link rel="stylesheet" href="../css/default.css">
 </head>
 <body>
     <main>
@@ -27,7 +29,7 @@
             <?php 
                 $query = $db->query('SELECT product_id, name, stock, price FROM products');
                 while(($row = $query->fetch())) {
-                    $pname = $row["name"];
+                    $pname = htmlspecialchars($row["name"]);
                     $id = $row["product_id"];
                     $price = $row["price"];
                     $stock = $row["stock"];

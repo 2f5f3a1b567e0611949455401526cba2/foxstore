@@ -8,10 +8,10 @@
 	</div>
 	<div class="mainbar">
 		<div class="rotate">
-			<a href="./">Home</a>
+			<a href="/foxstore/">Home</a>
 		</div>
 		<div class="rotate">
-			<a href="browse.php">Browse </a>  
+			<a href="/foxstore/browse.php">Browse </a>  
 		</div>
 		<div class="rotate">
 			<a href="/test/track.php">Track Order</a>

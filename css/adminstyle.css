@@ -51,6 +51,7 @@ main {
     border: 1px solid lightgray;
     margin-inline: auto;
     padding: 1em;
+    background-color: white;
 }
 
 table, tr, td {
