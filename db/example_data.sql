@@ -9,7 +9,8 @@ INSERT INTO store.users (user_type, username, password) VALUES
 
 INSERT INTO store.products (name, description, price, stock) VALUES
 ("Example Product 1 Chairman", "Chairman, a gentelman that Shares with the people without position. The Chairman is mostly made out of Wood, please don't mind it. IKEA made them like this.\nThis is a Example Description for Example product 1 written in the example_data.sql file.", 13.37, 10),
-("Example Product 2 Toothbrush", "“... TOOTHBRUSH IN THE JAW TOOTHBRUSH BRUSH BRUSH tooth jaw foam dome in the foam Roman dome come home home in the jaw Rome dome tooth toothbrush toothpick pickpocket socket rocket ...” - Aynrand the fountainhead.\nThis is a Example Description for Example product 2 written in the example_data.sql file. ", 10, 1);
+("Example Product 2 Toothbrush", "“... TOOTHBRUSH IN THE JAW TOOTHBRUSH BRUSH BRUSH tooth jaw foam dome in the foam Roman dome come home home in the jaw Rome dome tooth toothbrush toothpick pickpocket socket rocket ...” - Aynrand the fountainhead.\nThis is a Example Description for Example product 2 written in the example_data.sql file. ", 10, 1),
+("/dev/null", "dd if=/dev/urandom of=/dev/null bs=4096 prog=status", 1.11, 99999);
 
 INSERT INTO store.comments (user_id,product_id, rating, comment_desc) VALUES
 (1,1,5,"Ya know, i wandered many hills, many mires. Thwy said they could offer the finest of fluffs. I didn't want a damn bone! Pretty, squishy, mind you. -Rowan"),
