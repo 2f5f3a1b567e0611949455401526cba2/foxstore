@@ -40,7 +40,7 @@ header > input[type='radio']:checked ~ input[type='radio'] ~ :is(#ddcart, .dd),
 .rel{position:relative}
 
 /* Cart */
-.cart { width: 40ch; height: 20em; position: absolute; background:unset; border:unset; padding:0;}
+.cart { width: 40ch; height: 20em; background:unset; border:unset; padding:0;}
 #ifcart-body { font-size: var(--ifcart-font-size); line-height: var(--ifcart-line-height); }
 
 /* Reel */
@@ -70,9 +70,7 @@ button:active, label:active, a:active {font-weight: bold;}
   display: block;
 }
 
-
 .border-top {
-	grid-area: comm;
 	margin:1ch; 
 	border-top: 1px solid var(--br); 
 	position: relative; 

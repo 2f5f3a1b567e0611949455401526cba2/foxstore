@@ -179,6 +179,86 @@ function theme(){
 	ret:ret_post($params);
 }
 
+function order($db){
+	/* INIT */
+	$params = $_GET;
+	$params['r'] = 'order';
+	/* BODY */
+	if (!isset($_SESSION['user_id'])){$params['err'] = 'not logged in'; goto ret; }
+	if (empty($_POST['name'] ?? '')){$params['err'] = 'name not set'; goto ret; }
+	if (empty($_POST['addr'] ?? '')){$params['err'] = 'addr not set'; goto ret; }
+	$uID = (int)$_SESSION['user_id'];
+	$name = $_POST['name'];
+	$addr = $_POST['addr'];
+
+	$st = $db->prepare("SELECT COUNT(*) FROM cart WHERE user_id = :uID");
+	$st->execute([':uID' => $uID]);
+	if ($st->fetchColumn() == 0){$params['err'] = "cart is empty"; goto ret; }
+
+	$db->beginTransaction();
+	
+	// Create Order
+	$st = $db->prepare("
+		INSERT INTO orders (name, address, status, user_id)
+		VALUES (:name, :addr, 'unpaid', :uID)
+	");
+	try { // Create Order for User
+		$st->execute([':name' => $name, ':addr' => $addr, ':uID' => $uID]);
+	} catch (Exception $err) {
+		$db->rollBack();
+		$params['err'] = "failed to create order"; goto ret;
+	}
+	$oID = $db->lastInsertId();
+
+	// Update Stock
+	$st = $db->prepare("
+			UPDATE products p
+			INNER JOIN cart c ON p.product_id = c.product_id
+			SET p.stock = p.stock - c.amount
+			WHERE c.user_id = :uID
+	");
+	try {
+		$st->execute([':uID' => $uID]);
+	} catch (Exception $err) {
+		$db->rollBack();
+		$params['err'] = "missing stock"; goto ret;
+	}
+	
+	// Fill order
+	$st = $db->prepare("
+		INSERT INTO order_items 
+			(order_id, product_id, amount, price)
+		SELECT :oID, c.product_id, c.amount, p.price 
+		FROM cart c
+		JOIN products p
+			ON p.product_id = c.product_id
+		WHERE c.user_id = :uID
+	");
+	try {
+		$st->execute([':oID' => $oID, ':uID' => $uID]);
+	} catch (Exception $err) {
+		$db->rollBack();
+		$params['err'] = "failed to fill order"; goto ret;
+	}
+
+	// Empty Cart
+	$st = $db->prepare("
+			DELETE FROM cart WHERE user_id = :uID
+	");
+	try {
+		$st->execute([':uID' => $uID]);
+	} catch (Exception $err) {
+		$db->rollBack();
+		$params['err'] = "failed to empty cart"; goto ret;
+	}
+	$db->commit();
+
+	/* Success */
+	unset($params['r']);
+	/* DONE */
+	ret:ret_post($params);
+}
+
 /*----------------------------------------------------------------------------*/
 function init_head($name) {
 	echo "<head>
@@ -215,7 +295,7 @@ match($_GET['a']){
 	'cart_add'        => cart_append ($db),
 	'cart_mod'        => cart_modify ($db),
 	/* 'comment'         => comment($db), */
-	/* 'order'           => order  ($db), */
+	'order'           => order  ($db),
 	'theme'           => theme  (),
 	// returns
 	default   => null,
