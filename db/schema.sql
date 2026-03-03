@@ -91,18 +91,23 @@ CREATE TABLE store.cart (
 
 	PRIMARY KEY (id)
 );
-	CREATE TABLE store.comments (
+
+CREATE TABLE store.comments (
 	id 				BIGINT 			UNSIGNED AUTO_INCREMENT,
-	product_id  	BIGINT      	UNSIGNED,
+	product_id  	BIGINT      	UNSIGNED NOT NULL,
 	user_id     	BIGINT        	UNSIGNED NOT NULL,
 	rating 			TINYINT 		UNSIGNED,
 	comment_desc 	VARCHAR(512), 	
-	FOREIGN KEY (product_id) REFERENCES products(product_id),
-		--ON DELETE NO ACTION
-		--ON UPDATE CASCADE,
-	FOREIGN KEY (user_id) REFERENCES users(user_id),
-		--ON DELETE DELETE
-		--ON UPDATE CASCADE,
+    time        DATETIME               NOT NULL DEFAULT(CURRENT_TIMESTAMP()),
+
+	FOREIGN KEY (product_id) REFERENCES products(product_id)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
+
+	FOREIGN KEY (user_id)    REFERENCES users(user_id)
+		ON DELETE CASCADE
+		ON UPDATE CASCADE,
+        
 	primary key(id)
 );
 
