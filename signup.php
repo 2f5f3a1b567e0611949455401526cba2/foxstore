@@ -1,6 +1,6 @@
 <?php 
 require_once __DIR__ . '/include/init.php';
-$signup_err = ($_GET['r'] === 'account_login' ?? $_GET['err'] : '';
+$signup_err = ($_GET['r'] === 'account_login' ? $_GET['err'] : '';
 ?>
 
 <!DOCTYPE html>
