@@ -38,7 +38,7 @@ while($row = $query->fetch()){
 	$path = "/foxstore/img/products/{$row['image_path']}";
 	echo "
 		<a class='border-top' style='width: 20ch' href=./prod.php?pID={$row["product_id"]}>
-			<h1 style='max-width:18ch;overflow:hidden;'>{$row["name"]}</h1>
+			<h1 class='top' style='left:1ch;max-width:18ch;overflow:hidden'>{$row["name"]}</h1>
 			<figure style='position: relative;'>
 			<img class='browseimg' src='{$path}' alt='{$row['image_alt']}'>
 			<figcaption style='border-bottom:1px solid var(--br);margin-top:0.5em;'>{$row["price"]} - {$row["stock"]}</figcaption>
