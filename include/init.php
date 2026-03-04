@@ -319,7 +319,7 @@ function init_script() {
 	echo "<main class='script' style='padding-top:50vh;text-align:center;height:100vh;'>
 	<form id='ignoreScript' action='?a=ignore' method='post'><form>
 	javascript must be disabled <br>
-	<button form='ignoreScript'>skip</button>
+	<button form='ignoreScript' style='font-size:16px'>skip</button>
 	</main>";
 }
 
