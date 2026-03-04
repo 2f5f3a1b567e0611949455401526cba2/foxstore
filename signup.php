@@ -7,13 +7,20 @@ require_once __DIR__ . '/include/init.php';
 <?php init_head('index'); ?>
 <body id='body' style='color:var(--fg);background:var(--bg);'>
 <main class='noscript page'>
-<?php include 'include/header.php'?>
+    <?php include 'include/header.php'?>
 	<div class='vcenter' style='justify-content:center;height:calc(100vh - 2em);'>
 	<form action="browse.php?action=signup" method="post" style='display: flex;flex-direction:column;'>
 		<input type="text" name="user" id="user" placeholder="username">
 		<input type="password" name="pass"  id="pass" placeholder="password">
 		<input type="password" name="pass2" id="pass2" placeholder="password">
-		<b style='font-size:16px;height:1em;'><?=$signup_err?></b>
+        
+		<b style='font-size:16px;height:1em;'>
+        <php?
+            if (isset($signup_err)) {
+                echo "$signup_err";
+            }
+        ?>
+        </b>
 		<button type="submit">sign up</button>
 	</form>
 	</div>

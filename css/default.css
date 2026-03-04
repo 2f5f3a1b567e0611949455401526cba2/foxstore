@@ -54,6 +54,9 @@ label, a, button {
 	height: 1em;
 	flex: 0 0 auto;
 	white-space: nowrap;
+    &:hover {
+        text-decoration: underline;
+    }
 }
 button:active, label:active, a:active {font-weight: bold;}
 
