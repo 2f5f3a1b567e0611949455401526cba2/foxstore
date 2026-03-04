@@ -179,6 +179,7 @@ function theme(){
 	ret:ret_post($params);
 }
 
+
 function order($db){
 	/* INIT */
 	$params = $_GET;
@@ -259,6 +260,33 @@ function order($db){
 	ret:ret_post($params);
 }
 
+function comment($db){
+	/* INIT */
+	$params = $_GET;
+	$params['r'] = 'comment';
+	/* BODY */
+	if (!isset($_SESSION['user_id'])){$params['err'] = 'not logged in'; goto ret; }
+	if (!isset($_POST['r'])){$params['err'] = 'rating not set'; goto ret; }
+	if (!isset($_GET['pID'])){$params['err'] = 'pID not set'; goto ret; }
+
+	try {
+	$pID = (int)$_GET['pID'];
+	$uID = (int)$_SESSION['user_id'];
+	$rating =  (int)$_POST['r'];
+	$comment = $_POST['c'] ?? '';
+	
+	$st = $db->prepare("
+		INSERT INTO comments (product_id, user_id, rating, comment_desc)
+		VALUES (:pID, :uID, :rating, :comment)
+	");
+	$st->execute([':pID' => $pID, ':uID' => $uID, ':rating' => $rating, ':comment' => $comment]);
+	} catch(Exception $err) {$params['err'] = 'badly formatted request'; goto ret; }
+	/* Success */
+	unset($params['r']);
+	/* DONE */
+	ret:ret_post($params);
+}
+
 /*----------------------------------------------------------------------------*/
 function init_head($name) {
 	echo "<head>
@@ -294,7 +322,7 @@ match($_GET['a'] ?? null){
   'account_delete'  => account_delete($db),
   'cart_add'        => cart_append ($db),
   'cart_mod'        => cart_modify ($db),
-  /* 'comment'         => comment($db), */
+  'comment'         => comment($db),
   'order'           => order  ($db),
   'theme'           => theme  (),
   // returns

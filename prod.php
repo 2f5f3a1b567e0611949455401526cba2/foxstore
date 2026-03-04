@@ -1,5 +1,13 @@
 <?php 
 require_once __DIR__ . '/include/init.php';
+
+$params = $_GET;
+unset($params['r']);
+unset($params['err']);
+/*----------------------------------------------------------------------------*/
+$params['a'] = 'comment';
+$url_comment = http_build_query($params);
+
 ?>
 <?php 
 	if (!isset($_GET['pID'])){header("Location: browse.php"); exit;}
@@ -22,6 +30,7 @@ require_once __DIR__ . '/include/init.php';
 	include 'include/reel.php';
 	$ImgReel = ob_get_clean();
 	$ImgReel = htmlspecialchars($ImgReel, ENT_QUOTES, 'UTF-8');
+
 ?>
 
 
@@ -49,10 +58,12 @@ require_once __DIR__ . '/include/init.php';
 			</p>
 			<!-- Add comment DropDown -->
 			<div class='tgl_on' style='display:block'>
-				TODO: Make Add comment form	
+				<form action='?<?=$url_comment?>' method='post' id='commnet'>
+				<textarea class='box' name="c" rows="10" cols="50" wrap="hard" placeholder='comment'></textarea>
+				<li>rating: <input type='number' min='0' max='5' name='r' value='3'></li>
+				</form>
+				<button form='commnet' type='submit'>send</button>
 			</div>
-	
-
 
 			<?php
 			$query = $db->prepare("
@@ -64,8 +75,8 @@ require_once __DIR__ . '/include/init.php';
 			$query->execute([':prod_id' => $pID]);
 			while($row = $query->fetch()): ?>
 				<div class='comment border-top'>
-				<h1 class='top' style='left:1ch'><?=$row["username"]?> - rating: <?=$row["rating"]?></h1>
-				<?=$row["comment_desc"]?>
+				<h1 class='top' style='left:1ch'><?=htmlspecialchars($row["username"])?> - rating: <?=$row["rating"]?></h1>
+				<?=htmlspecialchars($row["comment_desc"])?>
 				</div>
 			<?php endwhile; ?>
 			</div>
