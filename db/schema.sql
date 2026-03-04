@@ -76,7 +76,7 @@ CREATE TABLE store.images (
 
 
 CREATE TABLE store.cart (
-	id          BIGINT        UNSIGNED AUTO_INCREMENT,
+	-- id          BIGINT        UNSIGNED AUTO_INCREMENT,
 	user_id     BIGINT        UNSIGNED NOT NULL,
 	product_id  BIGINT        UNSIGNED,
 	amount      INT           UNSIGNED NOT NULL,
@@ -86,10 +86,9 @@ CREATE TABLE store.cart (
 		ON UPDATE CASCADE,
 
 	FOREIGN KEY (product_id) REFERENCES products(product_id)
-		ON DELETE SET NULL
 		ON UPDATE CASCADE,
 
-	PRIMARY KEY (id)
+	PRIMARY KEY (user_id, product_id)
 );
 
 CREATE TABLE store.comments (
