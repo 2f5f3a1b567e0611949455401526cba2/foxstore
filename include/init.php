@@ -284,7 +284,10 @@ function init_script() {
 
 require_once __DIR__ . '/db.php';
 
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    // Start a session if there is none
+    session_start();
+}
 
 if (isset($_GET['a'])) {
     match($_GET['a']){

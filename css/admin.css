@@ -1,0 +1,29 @@
+table, tr, td {
+    border: 1px solid gray;
+    border-collapse: collapse;
+}
+table {
+    margin-top: 2ch;
+}
+td {
+    padding: 1ch;
+}
+
+.stock {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 4px;
+}
+
+.stock > input[type="text"] {
+    width: 3ch;
+    text-align: center;
+}
+
+tr:nth-child(2n) {
+    background-color: #aaaaaa60;
+}
+
+td:last-child {
+    text-align: right;
+}

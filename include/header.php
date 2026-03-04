@@ -12,6 +12,8 @@ $url_login = http_build_query($params);
 $params['a'] = 'account_logout';
 $url_logout = http_build_query($params);
 
+$isAdminpage = str_contains($_SERVER['REQUEST_URI'],"admin");
+
 
 	// // no return
 	// 'account_login'   => account_login ($db),
@@ -38,7 +40,10 @@ $login_checked = $login_err ? 'checked' : '';
 <header class='vcenter' style='z-index:+1;'>
 <input class='hidden' type='radio' id='nil_btn' name='header_btns'/>
 
-<a href='browse.php'>browse</a>
+<a href='/foxstore/browse.php'>browse</a>
+
+<?php if (!$isAdminpage): ?>
+
 <!-- Search Button -->
 <input class='hidden' type='radio' id='search_btn' name='header_btns'/>
 <p class='rel'>
@@ -47,7 +52,7 @@ $login_checked = $login_err ? 'checked' : '';
 </p>
 <!-- Search Drop Down -->
 <div class='dd'>
-	<form action='browse.php' method='get' id='search' 
+	<form action='/foxstore/browse.php' method='get' id='search' 
 style='left:0.5ch'>
 	<input type='search' id='search' name='s' placeholder='search'>
 	<select name="sort" id="sort">
@@ -61,6 +66,7 @@ style='left:0.5ch'>
 	<button form='search' type='submit'>apply</button>
 </div>
 
+
 <?php if ($_SERVER['PHP_SELF'] !== '/foxstore/order.php'): ?>
 <!-- Cart Button -->
 <input class='hidden' type='radio' id='cart_btn' name='header_btns'/>
@@ -71,12 +77,11 @@ style='left:0.5ch'>
 <!-- Cart Drop Down -->
 <iframe class='dd cart' style='left:1ch' src='cart.php' name='ifCart'></iframe>
 <?php endif; ?>
+<?php endif; ?>
 
 <!-- Admin link -->
  <?php if (isset($_SESSION["admin"])): ?>
-<div>
-    <a href="/foxstore/admin/">admin page</a>
-</div>
+<a href="/foxstore/admin/">admin page</a>
 <?php endif; ?>
 
 <!-- Theme Button -->

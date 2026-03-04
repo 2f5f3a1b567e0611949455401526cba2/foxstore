@@ -11,11 +11,18 @@
 	--tmplopt-line-height: 1.2;
 }
 
+
 *{all:unset;display:revert;box-sizing:border-box;justify:center}
 html{font-size:var(--font-size);line-height:var(--line-height);font-family:monospace}
 header {width:auto;gap:2ch;padding:1em 1ch;height:1em;position:relative}
 .page {max-width:80ch;margin:0 auto;height:100vh}
 .noscript {display:none}
+
+
+body {
+    color:var(--fg);
+    background:var(--bg);
+}
 
 /* Dropdowns Style */
 .dd {display:none;position:absolute;top:100%}
