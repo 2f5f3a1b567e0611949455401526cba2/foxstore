@@ -8,7 +8,7 @@
 
 <?php
 if (!isset($_SESSION['user_id'])){
-	echo "<label for='BtnLogin'>add to cart</label>";}
+	echo "<label for='login_btn'>add to cart</label>";}
 else{echo "<button type='submit'>add to cart</button>";}
 ?>
 </div>

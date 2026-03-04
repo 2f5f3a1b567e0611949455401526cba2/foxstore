@@ -110,4 +110,21 @@ CREATE TABLE store.comments (
 	primary key(id)
 );
 
+CREATE VIEW product_summary AS
+SELECT 
+	p.product_id,
+	p.name,
+	p.price,
+	p.stock,
+	AVG(c.rating) AS rating,
+	(SELECT image_path FROM images i 
+		WHERE i.product_id = p.product_id 
+		LIMIT 1) AS thumb,
+  (SELECT image_alt FROM images i 
+		WHERE i.product_id = p.product_id 
+		LIMIT 1) AS alt
+FROM products p
+LEFT JOIN comments c ON p.product_id = c.product_id
+GROUP BY p.product_id;
+
 COMMIT;
