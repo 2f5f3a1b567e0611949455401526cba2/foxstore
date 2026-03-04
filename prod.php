@@ -7,8 +7,8 @@ unset($params['err']);
 /*----------------------------------------------------------------------------*/
 $params['a'] = 'comment';
 $url_comment = http_build_query($params);
-$comment_err = ($_GET['r'] === 'comment') ? $_GET['err'] : '';
-$comment_checked = empty($commnet_err) ? 'checked' : '';
+$comment_err =     ($_GET['r'] === 'comment') ? $_GET['err'] : '';
+$comment_checked = ($_GET['r'] === 'comment') ? 'checked' : '';
 
 ?>
 <?php 

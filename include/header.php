@@ -13,23 +13,10 @@ $params['a'] = 'account_logout';
 $url_logout = http_build_query($params);
 
 
-	// // no return
-	// 'account_login'   => account_login ($db),
-	// 'account_signup'  => account_signup($db),
-	// 'account_delete'  => account_delete($db),
-	// 'cart_add'        => cart_append ($db),
-	// 'cart_mod'        => cart_modify ($db),
-	// /* 'comment'         => comment($db), */
-	// /* 'order'           => order  ($db), */
-	// 'theme'           => theme  (),
-	// // returns
-	// default   => null,
+$login_err =     ($_GET['r'] === 'account_login') ? $_GET['err'] : '';
+$login_checked = ($_GET['r'] === 'account_login') ? 'checked' : '';
 
-$login_err = ($_GET['r'] === 'account_login') ? $_GET['err'] : '';
 
-/*----------------------------------------------------------------------------*/
-
-$login_checked = empty($login_err) ? 'checked' : '';
 ?>
 
 <header class='vcenter' style='z-index:+1;'>
