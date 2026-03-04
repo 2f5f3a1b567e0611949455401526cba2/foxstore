@@ -104,7 +104,7 @@ style='left:0.5ch'>
 <form action='?<?=$url_login?>' method='post' id='login'>
 	<input type='text'     name='user' placeholder='username'>
 	<input type='password' name='pass' placeholder='password'>
-	<b style='font-size:16px;'><?=$login_err?></b>
+	<b style='font-size:16px'><?=$login_err?></b>
 </form>
 	<button form='login' type='submit'>login</button>
 	<a href='signup.php' style='margin-left:auto' target='_top'>signup</a>
