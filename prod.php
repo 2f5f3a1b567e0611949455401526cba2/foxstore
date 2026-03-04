@@ -60,7 +60,7 @@ $comment_checked = ($_GET['r'] === 'comment') ? 'checked' : '';
 			</p>
 			<!-- Add comment DropDown -->
 			<div class='tgl_on' style='display:block'>
-				<form action='?<?=$url_comment?>' method='post' id='commnet'>
+				<form action='?<?=$url_comment?>' method='post' id='commnet' style='padding:0 0.5ch'>
 				<textarea class='box' name="c" rows="5" cols="75" wrap="hard" placeholder='comment'></textarea>
 				<p style='font-size:16px'><?=$comment_err?></p>
 				<li>rating: <input type='number' min='0' max='5' name='r' value='3'><button form='commnet' type='submit'>send</button></li>
