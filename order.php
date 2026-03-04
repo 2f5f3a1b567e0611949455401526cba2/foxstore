@@ -27,7 +27,7 @@ $order_err = ($_GET['r'] === 'order') ? $_GET['err'] ?? null : null;
 			<li><input type='text' name='name' placeholder='name'></li>
 			<li><input type='text' name='addr' placeholder='address'></li>
 		</form>
-		<p><?=$order_err?></p>
+		<p style='font-size:16px'><?=$order_err?></p>
 		<button form='order'>order</button>
 	</div>
 
