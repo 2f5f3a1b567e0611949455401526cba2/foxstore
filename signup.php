@@ -1,5 +1,8 @@
 <?php 
 require_once __DIR__ . '/include/init.php';
+$signup_err = $_GET['r'] == ""
+
+$signup_err = ($_GET['r'] === 'account_login' ?? $_GET['err'] : '';
 ?>
 
 <!DOCTYPE html>
@@ -14,13 +17,7 @@ require_once __DIR__ . '/include/init.php';
 		<input type="password" name="pass"  id="pass" placeholder="password">
 		<input type="password" name="pass2" id="pass2" placeholder="password">
         
-		<b style='font-size:16px;height:1em;'>
-        <php?
-            if (isset($signup_err)) {
-                echo "$signup_err";
-            }
-        ?>
-        </b>
+		<b style='font-size:16px;height:1em;'><?=$signup_err?></b>
 		<button type="submit">sign up</button>
 	</form>
 	</div>
