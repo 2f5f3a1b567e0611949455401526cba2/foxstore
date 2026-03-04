@@ -268,16 +268,16 @@ function init_head($name) {
 <link rel='shortcut icon' href='favicon.ico'>
 <link rel='stylesheet' href='css/default.css'>
 <style>:root{--bg:{$_SESSION['bg']};--fg:{$_SESSION['fg']};--br:{$_SESSION['br']}}</style>
-<noscript><style>
+<style>
 	.script{display:none !important;}
 	.noscript{display:block;}
-</style></noscript>
+</style>
 </head>";
 }
 function init_script() {
-	echo "<main class='script' style='padding-top:50vh;text-align:center;height:100vh;'>
-	javascript must be disabled
-	</main>";
+	//echo "<main class='script' style='padding-top:50vh;text-align:center;height:100vh;'>
+	//javascript must be disabled
+	//</main>";
 }
 
 /*----------------------------------------------------------------------------*/
@@ -286,20 +286,22 @@ require_once __DIR__ . '/db.php';
 
 session_start();
 
-match($_GET['a']){
-	// no return
-	'account_login'   => account_login ($db),
-	'account_logout'  => account_logout(),
-	'account_signup'  => account_signup($db),
-	'account_delete'  => account_delete($db),
-	'cart_add'        => cart_append ($db),
-	'cart_mod'        => cart_modify ($db),
-	/* 'comment'         => comment($db), */
-	'order'           => order  ($db),
-	'theme'           => theme  (),
-	// returns
-	default   => null,
-};
+if (isset($_GET['a'])) {
+    match($_GET['a']){
+        // no return
+        'account_login'   => account_login ($db),
+        'account_logout'  => account_logout(),
+        'account_signup'  => account_signup($db),
+        'account_delete'  => account_delete($db),
+        'cart_add'        => cart_append ($db),
+        'cart_mod'        => cart_modify ($db),
+        /* 'comment'         => comment($db), */
+        'order'           => order  ($db),
+        'theme'           => theme  (),
+        // returns
+        default   => null,
+    };
+}
 
 $_SESSION['bg'] = $_SESSION['bg'] ?? '#000000';
 $_SESSION['fg'] = $_SESSION['fg'] ?? '#808080';

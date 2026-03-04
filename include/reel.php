@@ -23,7 +23,7 @@ while ($row = $st->fetch()){
 	$img = "./img/products/{$row['image_path']}";
 	echo 
 "<input type='radio' name='reel-select' id='{$row['id']}' class='reel-select' {$status}>
-<label for='{$row['id']}' class='img'><img src='{$img}' loading='lazy' alt='{$row['alt']}'></label>";
+<label for='{$row['id']}' class='img'><img src='{$img}' loading='lazy' alt='{$row['image_alt']}'></label>";
 	$status = "";
 };
 ?>

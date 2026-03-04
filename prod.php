@@ -16,7 +16,7 @@ require_once __DIR__ . '/include/init.php';
 	$pname = $row['name'];
 	$pdesc = $row['description'];
 
-	include 'methods.php'; // handles login requires $db
+	//include 'methods.php'; // handles login requires $db
 	ob_start();
 	// Needs db and pID to be set
 	include 'include/reel.php';

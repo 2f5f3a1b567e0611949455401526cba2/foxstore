@@ -25,12 +25,14 @@ $url_logout = http_build_query($params);
 	// // returns
 	// default   => null,
 
-
-$login_err = ($_GET['r'] === 'account_login') ? $_GET['err'] ?? null : null;
+$login_err = null;
+if (isset($_GET['r']) && $_GET['r'] === 'account_login' && isset($_GET['err'])) {
+    $login_err = $_GET['err'];
+}
 
 /*----------------------------------------------------------------------------*/
 
-$login_checked = ($_GET['r'] === 'account_login') && $login_err ? 'checked' : '';
+$login_checked = $login_err ? 'checked' : '';
 ?>
 
 <header class='vcenter' style='z-index:+1;'>
@@ -59,9 +61,7 @@ style='left:0.5ch'>
 	<button form='search' type='submit'>apply</button>
 </div>
 
-
-<!-- TODO : Fix to propper path once production --> 
-<?php if ($_SERVER['PHP_SELF'] !== '/fork/order.php'): ?>
+<?php if ($_SERVER['PHP_SELF'] !== '/foxstore/order.php'): ?>
 <!-- Cart Button -->
 <input class='hidden' type='radio' id='cart_btn' name='header_btns'/>
 <p class='rel'>
@@ -72,6 +72,12 @@ style='left:0.5ch'>
 <iframe class='dd cart' style='left:1ch' src='cart.php' name='ifCart'></iframe>
 <?php endif; ?>
 
+<!-- Admin link -->
+ <?php if (isset($_SESSION["admin"])): ?>
+<div>
+    <a href="/foxstore/admin/">admin page</a>
+</div>
+<?php endif; ?>
 
 <!-- Theme Button -->
 <input class='hidden' type='radio' id='theme_btn' name='header_btns'/>
