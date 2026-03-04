@@ -40,7 +40,34 @@ require_once __DIR__ . '/include/init.php';
 			</div>
 			<div class='border-top' style='grid-area: comm'>
 			<h1>comments</h1>
-				
+
+			<input class='hidden'       type='radio' id='nil_cmt_btn'    name='comment_btns'/>
+			<input class='hidden tgl' type='radio' id='addcmt_btn' name='comment_btns'/>
+			<p style='position:absolute;top:-0.5em;right:1ch;background:var(--bg);padding:0 0.5ch'>
+				<label for='addcmt_btn'>add comment</label>
+				<label class='invis overlay' for='nil_cmt_btn'>add comment</label>
+			</p>
+			<!-- Add comment DropDown -->
+			<div class='tgl_on' style='display:block'>
+				FOO BAR
+			</div>
+	
+
+
+			<?php
+			$query = $db->prepare("
+				SELECT * FROM comments c 
+				INNER JOIN users 
+				ON c.user_id = users.user_id 
+				WHERE product_id=:prod_id"
+			);
+			$query->execute([':prod_id' => $pID]);
+			while($row = $query->fetch()): ?>
+				<div class='comment border-top'>
+				<h1><?=$row["username"]?> - Rating: <?=$row["rating"]?></h1>
+				<?=$row["comment_desc"]?>
+				</div>
+			<?php endwhile; ?>
 			</div>
 		</div>
 </main>

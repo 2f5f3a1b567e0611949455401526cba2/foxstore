@@ -40,13 +40,13 @@ $login_checked = $login_err ? 'checked' : '';
 
 <a href='browse.php'>browse</a>
 <!-- Search Button -->
-<input class='hidden' type='radio' id='search_btn' name='header_btns'/>
+<input class='hidden tgl' type='radio' id='search_btn' name='header_btns'/>
 <p class='rel'>
 	<label for='search_btn'>search</label>
 	<label class='invis overlay' for='nil_btn'>search</label>
 </p>
 <!-- Search Drop Down -->
-<div class='dd'>
+<div class='dd tgl_on'>
 	<form action='browse.php' method='get' id='search' 
 style='left:0.5ch'>
 	<input type='search' id='search' name='s' placeholder='search'>
@@ -63,13 +63,13 @@ style='left:0.5ch'>
 
 <?php if ($_SERVER['PHP_SELF'] !== '/foxstore/order.php'): ?>
 <!-- Cart Button -->
-<input class='hidden' type='radio' id='cart_btn' name='header_btns'/>
+<input class='hidden tgl' type='radio' id='cart_btn' name='header_btns'/>
 <p class='rel'>
 	<label for='cart_btn'>cart</label>
 	<label class='invis overlay' for='nil_btn'>cart</label>
 </p>
 <!-- Cart Drop Down -->
-<iframe class='dd cart' style='left:1ch' src='cart.php' name='ifCart'></iframe>
+<iframe class='dd cart tgl_on' style='left:1ch' src='cart.php' name='ifCart'></iframe>
 <?php endif; ?>
 
 <!-- Admin link -->
@@ -80,13 +80,13 @@ style='left:0.5ch'>
 <?php endif; ?>
 
 <!-- Theme Button -->
-<input class='hidden' type='radio' id='theme_btn' name='header_btns'/>
+<input class='hidden tgl' type='radio' id='theme_btn' name='header_btns'/>
 <p class='rel' style='margin-left:auto'>
 	<label for='theme_btn'>☼</label>
 	<label class='invis overlay' for='nil_btn'>☼</label>
 </p>
 <!-- Theme Drop Down -->
-<form class='dd' action='?<?=$url_theme?>' method='post' id='theme' style='right:0.5ch'>
+<form class='dd tgl_on' action='?<?=$url_theme?>' method='post' id='theme' style='right:0.5ch'>
 	<li><input type=color id='input_fg' name='fg' value=<?=$_SESSION['fg']?> />
 	<label for='input_fg'>foreground</label></li>
 	<li><input type=color id='input_br' name='br' value=<?=$_SESSION['br']?> />
@@ -100,13 +100,13 @@ style='left:0.5ch'>
 
 <?php if (!isset($_SESSION['user_id'])): ?>
 <!-- Login Button -->
-<input class='hidden' type='radio' id='login_btn' name='header_btns' <?=$login_checked?>/>
+<input class='hidden tgl' type='radio' id='login_btn' name='header_btns' <?=$login_checked?>/>
 <p class='rel'>
 	<label for='login_btn'>login</label>
 	<label class='invis overlay' for='nil_btn'>login</label>
 </p>
 <!-- Login Drop Down -->
-<div class='dd'  style='right:0.5ch'>
+<div class='dd tgl_on'  style='right:0.5ch'>
 <form action='?<?=$url_login?>' method='post' id='login'>
 	<input type='text'     name='user' placeholder='username'>
 	<input type='password' name='pass' placeholder='password'>
@@ -120,13 +120,13 @@ style='left:0.5ch'>
 
 <?php else: ?>
 <!-- Profile Button -->
-<input class='hidden' type='radio' id='BtnProfile' name='header_btns' <?=$login_checked?> />
+<input class='hidden tgl' type='radio' id='BtnProfile' name='header_btns' <?=$login_checked?> />
 <p class='rel'>
 	<label for='BtnProfile' ><?=$_SESSION['username']?></label>
 	<label class='invis overlay' for='nil_btn'><?=$_SESSION['username']?></label>
 </p>
 <!-- Profile Drop Down -->
-<form class='dd' action='?<?=$url_logout?>' method='post' id='logout'
+<form class='dd tgl_on' action='?<?=$url_logout?>' method='post' id='logout'
 style='right:-0.5ch'>
 	<button form='logout' type='submit'>logout</button>
 </form>
