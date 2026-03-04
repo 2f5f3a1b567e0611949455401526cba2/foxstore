@@ -287,8 +287,24 @@ function comment($db){
 	ret:ret_post($params);
 }
 
+function ignore(){
+	/* INIT */
+	$params = $_GET;
+	$params['r'] = 'ignore';
+	/* BODY */
+	$_SESSION['script'] = 'ignore';
+	/* Success */
+	unset($params['r']);
+	/* DONE */
+	ret:ret_post($params);
+}
+
 /*----------------------------------------------------------------------------*/
 function init_head($name) {
+	$script = "<style> .script{display:none !important;} .noscript{display:block;} </style>";
+	if ($_SESSION['script'] !== 'ignore'){
+		$script = "<noscript>" . $script . "</noscript>";
+	}
 	echo "<head>
 <meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
@@ -296,16 +312,15 @@ function init_head($name) {
 <link rel='shortcut icon' href='favicon.ico'>
 <link rel='stylesheet' href='css/default.css'>
 <style>:root{--bg:{$_SESSION['bg']};--fg:{$_SESSION['fg']};--br:{$_SESSION['br']}}</style>
-<style>
-	.script{display:none !important;}
-	.noscript{display:block;}
-</style>
+{$script}
 </head>";
 }
 function init_script() {
-	//echo "<main class='script' style='padding-top:50vh;text-align:center;height:100vh;'>
-	//javascript must be disabled
-	//</main>";
+	echo "<main class='script' style='padding-top:50vh;text-align:center;height:100vh;'>
+	<form id='ignoreScript' action='?a=ignore' method='post'><form>
+	javascript must be disabled <br>
+	<button form='ignoreScript'>skip</button>
+	</main>";
 }
 
 /*----------------------------------------------------------------------------*/
@@ -324,7 +339,8 @@ match($_GET['a'] ?? null){
   'cart_mod'        => cart_modify ($db),
   'comment'         => comment($db),
   'order'           => order  ($db),
-  'theme'           => theme  (),
+	'theme'           => theme  (),
+	'ignore'          => ignore (),
   // returns
   default   => null,
 };
