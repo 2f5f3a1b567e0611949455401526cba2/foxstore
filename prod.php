@@ -7,6 +7,8 @@ unset($params['err']);
 /*----------------------------------------------------------------------------*/
 $params['a'] = 'comment';
 $url_comment = http_build_query($params);
+$comment_err = ($_GET['r'] === 'comment') ? $_GET['err'] : '';
+$comment_checked = empty($commnet_err) ? 'checked' : '';
 
 ?>
 <?php 
@@ -51,7 +53,7 @@ $url_comment = http_build_query($params);
 			<h1 class='top' style='left:1ch'>comments</h1>
 
 			<input class='hidden'       type='radio' id='nil_cmt_btn'    name='comment_btns'/>
-			<input class='hidden tgl' type='radio' id='addcmt_btn' name='comment_btns'/>
+			<input class='hidden tgl' type='radio' id='addcmt_btn' name='comment_btns' <?=$comment_checked?> />
 			<p class='top' style='right:1ch'>
 				<label for='addcmt_btn'>add comment</label>
 				<label class='invis overlay' for='nil_cmt_btn'>add comment</label>
@@ -59,10 +61,10 @@ $url_comment = http_build_query($params);
 			<!-- Add comment DropDown -->
 			<div class='tgl_on' style='display:block'>
 				<form action='?<?=$url_comment?>' method='post' id='commnet'>
-				<textarea class='box' name="c" rows="10" cols="50" wrap="hard" placeholder='comment'></textarea>
-				<li>rating: <input type='number' min='0' max='5' name='r' value='3'></li>
+				<textarea class='box' name="c" rows="5" cols="75" wrap="hard" placeholder='comment'></textarea>
+				<p style='font-size:16px'><?=$comment_err?></p>
+				<li>rating: <input type='number' min='0' max='5' name='r' value='3'><button form='commnet' type='submit'>send</button></li>
 				</form>
-				<button form='commnet' type='submit'>send</button>
 			</div>
 
 			<?php
@@ -76,7 +78,7 @@ $url_comment = http_build_query($params);
 			while($row = $query->fetch()): ?>
 				<div class='comment border-top'>
 				<h1 class='top' style='left:1ch'><?=htmlspecialchars($row["username"])?> - rating: <?=$row["rating"]?></h1>
-				<?=htmlspecialchars($row["comment_desc"])?>
+				<pre><?=nl2br(htmlspecialchars($row["comment_desc"]))?></pre>
 				</div>
 			<?php endwhile; ?>
 			</div>

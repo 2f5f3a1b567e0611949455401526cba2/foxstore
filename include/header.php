@@ -25,14 +25,11 @@ $url_logout = http_build_query($params);
 	// // returns
 	// default   => null,
 
-$login_err = null;
-if (isset($_GET['r']) && $_GET['r'] === 'account_login' && isset($_GET['err'])) {
-    $login_err = $_GET['err'];
-}
+$login_err = ($_GET['r'] === 'account_login') ? $_GET['err'] : '';
 
 /*----------------------------------------------------------------------------*/
 
-$login_checked = $login_err ? 'checked' : '';
+$login_checked = empty($login_err) ? 'checked' : '';
 ?>
 
 <header class='vcenter' style='z-index:+1;'>
@@ -122,7 +119,7 @@ style='left:0.5ch'>
 <!-- Profile Button -->
 <input class='hidden tgl' type='radio' id='BtnProfile' name='header_btns' <?=$login_checked?> />
 <p class='rel'>
-	<label for='BtnProfile' ><?=$_SESSION['username']?></label>
+	<label for='BtnProfile' ><?=htmlspecialchars($_SESSION['username'])?></label>
 	<label class='invis overlay' for='nil_btn'><?=$_SESSION['username']?></label>
 </p>
 <!-- Profile Drop Down -->

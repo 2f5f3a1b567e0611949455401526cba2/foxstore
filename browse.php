@@ -35,12 +35,14 @@ $query = $db->prepare(
 $query->execute([':search' => $search]);
 
 while($row = $query->fetch()){
-	$path = "/foxstore/img/products/{$row['image_path']}";
+	$path = "/foxstore/img/products/" . htmlspecialchars($row['image_path']);
+	$name = htmlspecialchars($row["name"]);
+	$alt = htmlspecialchars($row['image_alt']);
 	echo "
 		<a class='border-top' style='width: 20ch' href=./prod.php?pID={$row["product_id"]}>
-			<h1 class='top' style='left:1ch;max-width:18ch;overflow:hidden'>{$row["name"]}</h1>
+			<h1 class='top' style='left:1ch;max-width:18ch;overflow:hidden'>{$name}</h1>
 			<figure style='position: relative;'>
-			<img class='browseimg' src='{$path}' alt='{$row['image_alt']}'>
+			<img class='browseimg' src='{$path}' alt='{$alt}'>
 			<figcaption style='border-bottom:1px solid var(--br);margin-top:0.5em;'>{$row["price"]} - {$row["stock"]}</figcaption>
 			</figure>
 		</a>";
