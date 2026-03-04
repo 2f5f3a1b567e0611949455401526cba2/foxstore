@@ -38,7 +38,7 @@ $comment_checked = ($_GET['r'] === 'comment') ? 'checked' : '';
 
 <!DOCTYPE html>
 <html lang="en">
-<?php init_head('prod'); ?>
+<?php init_head('product'); ?>
 <body id='body' style='color:var(--fg);background:var(--bg);'>
 <main class='noscript page'>
 <?php include 'include/header.php'?>

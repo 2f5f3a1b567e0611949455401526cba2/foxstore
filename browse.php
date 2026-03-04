@@ -13,10 +13,10 @@ require_once __DIR__ . '/include/init.php';
 
 <?php
 $sortmode = match($_GET["sort"] ?? null){
-	"priced" => "price ASC",
-	"priceu" => "price DESC",
-	"rated"  => "rating ASC",
-	"rateu"  => "rating DESC",
+	"priceu" => "price ASC",
+	"priced" => "price DESC",
+	"rateu"  => "rating ASC",
+	"rated"  => "rating DESC",
 	default  =>  "product_id",
 };
 // WARN: TODO: '%%' is a bad request
