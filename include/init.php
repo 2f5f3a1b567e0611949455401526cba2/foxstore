@@ -286,22 +286,20 @@ require_once __DIR__ . '/db.php';
 
 session_start();
 
-if (isset($_GET['a'])) {
-    match($_GET['a']){
-        // no return
-        'account_login'   => account_login ($db),
-        'account_logout'  => account_logout(),
-        'account_signup'  => account_signup($db),
-        'account_delete'  => account_delete($db),
-        'cart_add'        => cart_append ($db),
-        'cart_mod'        => cart_modify ($db),
-        /* 'comment'         => comment($db), */
-        'order'           => order  ($db),
-        'theme'           => theme  (),
-        // returns
-        default   => null,
-    };
-}
+match($_GET['a'] ?? null){
+  // no return
+  'account_login'   => account_login ($db),
+  'account_logout'  => account_logout(),
+  'account_signup'  => account_signup($db),
+  'account_delete'  => account_delete($db),
+  'cart_add'        => cart_append ($db),
+  'cart_mod'        => cart_modify ($db),
+  /* 'comment'         => comment($db), */
+  'order'           => order  ($db),
+  'theme'           => theme  (),
+  // returns
+  default   => null,
+};
 
 $_SESSION['bg'] = $_SESSION['bg'] ?? '#000000';
 $_SESSION['fg'] = $_SESSION['fg'] ?? '#808080';
