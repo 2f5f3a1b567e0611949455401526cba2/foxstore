@@ -15,16 +15,22 @@ $comment_checked = (($_GET['r'] ?? null) === 'comment') ? 'checked' : '';
 	if (!isset($_GET['pID'])){header("Location: browse.php"); exit;}
 
 	$pID = $_GET['pID'];
-	include 'include/db.php';
 
-	$st = $db->prepare('SELECT * FROM products WHERE product_id=:pID');
+	$st = $db->prepare("
+		SELECT * FROM product_summary 
+		WHERE product_id = :pID
+	");
 
-	$st->bindParam(':pID', $pID);
-	$st->execute();
+	$st->execute([':pID' => $pID]);
+
 	$row = $st->fetch();
 	if (!$row) { header("Location: browse.php"); exit; }
-	$pname = $row['name'];
-	$pdesc = $row['description'];
+
+	$pname = htmlspecialchars($row['name']);
+	$price = (int)$row['price'];
+	$stock = (int)$row['stock'];
+	$rating = empty($row['rating']) ? '-': number_format($row['rating'] ?? 0, 1) . '★';
+	$pdesc = htmlspecialchars($row['description']);
 
 	//include 'methods.php'; // handles login requires $db
 	ob_start();
@@ -63,7 +69,7 @@ $comment_checked = (($_GET['r'] ?? null) === 'comment') ? 'checked' : '';
 				<form action='?<?=$url_comment?>' method='post' id='commnet' style='padding:0 0.5ch'>
 				<textarea class='box' name="c" rows="5" cols="75" wrap="hard" placeholder='comment'></textarea>
 				<p style='font-size:16px'><?=$comment_err?></p>
-				<li>rating: <input type='number' min='0' max='5' name='r' value='3'><button form='commnet' type='submit'>send</button></li>
+				<li>rating: <input type='number' min='1' max='5' name='r' value='3'><button form='commnet' type='submit'>send</button></li>
 				</form>
 			</div>
 
@@ -77,7 +83,7 @@ $comment_checked = (($_GET['r'] ?? null) === 'comment') ? 'checked' : '';
 			$query->execute([':prod_id' => $pID]);
 			while($row = $query->fetch()): ?>
 				<div class='comment border-top'>
-				<h1 class='top' style='left:1ch'><?=htmlspecialchars($row["username"])?> - rating: <?=$row["rating"]?></h1>
+				<h1 class='top' style='left:1ch'><?=htmlspecialchars($row["username"])?> - <?=$row["rating"]?>★</h1>
 				<pre><?=nl2br(htmlspecialchars($row["comment_desc"]))?></pre>
 				</div>
 			<?php endwhile; ?>

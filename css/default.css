@@ -11,8 +11,7 @@
 	--tmplopt-line-height: 1.2;
 }
 
-
-*{all:unset;display:revert;box-sizing:border-box;}
+*{all:unset;display:revert;box-sizing:border-box}
 html{font-size:var(--font-size);line-height:var(--line-height);font-family:monospace}
 header {width:auto;gap:2ch;padding:1em 1ch;height:1em;position:relative}
 .page {max-width:80ch;margin:0 auto;height:100vh}
@@ -31,7 +30,9 @@ body {
 /* Form Style */ 
 form > li {display:flex;gap:1ch;align-content:center;}
 
+
 /* Header Drop Down:s */
+.tgl + p {height:1em;}
 
 .overlay{left:0}
 .tgl:checked~p>.overlay{pointer-events:auto} 

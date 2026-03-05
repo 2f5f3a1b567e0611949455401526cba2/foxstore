@@ -96,7 +96,6 @@ CREATE TABLE store.comments (
 	product_id    BIGINT    UNSIGNED NOT NULL,
 	user_id       BIGINT    UNSIGNED NOT NULL,
 	rating        TINYINT   UNSIGNED,
-	comment_title VARCHAR(32) NOT NULL,
 	comment_desc  VARCHAR(512),
 	time          DATETIME  NOT NULL DEFAULT(CURRENT_TIMESTAMP()),
 
@@ -117,6 +116,7 @@ SELECT
 	p.name,
 	p.price,
 	p.stock,
+	p.description,
 	AVG(c.rating) AS rating,
 	(SELECT image_path FROM store.images i 
 		WHERE i.product_id = p.product_id 

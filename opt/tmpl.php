@@ -1,6 +1,13 @@
 <?php if (!isset($pID)){echo "No Such pID"; return; } ?>
 <form class='border-top' style='grid-area:form;' action='cart.php?a=cart_add' method='post' target='ifCart'>
 <h1 class='top' style='left:1ch'><?=$pname?></h1>
+<div style='display:flex;gap:1ch'>
+<p>$<?=$price?></p> 
+<p><?=$rating?></p>
+<p style='margin-left:auto'>stock:<?=$stock?></p>
+</div>
+<br>
+
 <input type='hidden' name='pID' value='<?=$pID?>'>
 
 <div style='display:flex; gap: 1ch;'>

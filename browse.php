@@ -9,7 +9,7 @@ require_once __DIR__ . '/include/init.php';
 <body id='body'>
 <main class='noscript page'>
 <?php include 'include/header.php'?>
-<div style='display: flex;align-items: flex-start;'>
+<div style='display:flex;align-items:flex-start;flex-wrap:wrap'>
 
 <?php
 $sortmode = match($_GET["sort"] ?? null){
@@ -41,13 +41,13 @@ while($row = $query->fetch()){
 	$path = "/foxstore/img/products/" . htmlspecialchars($row['thumb']);
 	$name = htmlspecialchars($row["name"]);
 	$alt = htmlspecialchars($row['alt']);
-	$rating = number_format($row['rating'] ?? 0, 1);
+	$rating = empty($row['rating']) ? '-': number_format($row['rating'] ?? 0, 1) . '★';
 	echo "
-		<a class='border-top' style='width: 20ch' href=./prod.php?pID={$row["product_id"]}>
-			<h1 class='top' style='left:1ch;max-width:18ch;overflow:hidden'>{$name}</h1>
+		<a class='border-top' style='width:18ch;height:15em' href=./prod.php?pID={$row["product_id"]}>
+			<h1 class='top' style='left:1ch;max-width:16ch;overflow:hidden'>{$name}</h1>
 			<figure style='position: relative;'>
 			<img class='browseimg' src='{$path}' alt='{$alt}'>
-			<figcaption style='border-bottom:1px solid var(--br);margin-top:0.5em;'>{$row["price"]} - {$row["stock"]} - {$rating}</figcaption>
+			<figcaption style='border-bottom:1px solid var(--br);margin-top:0.5em;display:flex'><p>\${$row["price"]}</p><p style='margin-left:auto'>{$rating}</p></figcaption>
 			</figure>
 		</a>";
 };
