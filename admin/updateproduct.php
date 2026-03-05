@@ -25,8 +25,8 @@
         
         // TODO: Check that the file really is an image
 
-        if ($imgfile["size"] > 2000000) {
-            // File was to big (> 2MB)
+        if ($imgfile["size"] > 4000000) {
+            // File was to big (> 4MB)
             return "";
         }
         

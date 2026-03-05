@@ -120,3 +120,8 @@ grid-template:
 
 /* Fixes warn about overflow visible*/
 img{overflow:clip;overflow-clip-margin:content-box;} 
+
+body {
+	/*Stop the page from going all the way out to the edge*/
+	padding-inline: 1ch;
+}

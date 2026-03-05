@@ -44,7 +44,7 @@ td:last-child {
     flex-direction: row;
 }
 
-.editform > div {
+.editform > div, .imginput > div {
     display: flex;
     flex-direction: column;
 }
@@ -68,4 +68,50 @@ textarea {
 .removeform {
     display: flex;
     flex-direction: row-reverse;
+}
+
+.images > div {
+    display: flex;
+    flex-direction: row;
+    gap: 1ch;
+    padding: 1ch;
+    border: 2px solid var(--br);
+}
+
+.images {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(32ch,1fr));
+    gap: 1ch;
+}
+
+.imginput {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: space-between;
+}
+.imginput label {
+    font-size: smaller;
+}
+.imginput input {
+    width: 100%;
+}
+
+.images img {
+    width: 12ch;
+    height: 12ch;
+    object-fit: cover;
+}
+
+.imginput > .removebutton {
+    align-self: flex-end;
+}
+
+.removebutton {
+    color: red;
+    max-width: fit-content;
+}
+
+.error {
+    color: red;
 }
