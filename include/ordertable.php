@@ -12,7 +12,7 @@ if ($query->rowCount() == 0) {
         <?php if ($isAdminpage): ?>
         <td>customer</td>
         <?php endif;?>
-        <td>total products</td>
+        <td>total pcs</td>
         <td>total price</td>
         <td>time</td>
         <td>status</td>
@@ -27,7 +27,7 @@ if ($query->rowCount() == 0) {
             $status = $row["status"];
             $nextstatus = ["unpaid" => "paid", "paid" => "packaged", "packaged" => "delivered", "delivered" => ""][$status];
             $statuscolor = ["unpaid" => "red", "paid" => "orange", "packaged" => "yellow", "delivered" => "lime"][$status];
-            
+            $timeshort = explode(" ",$time)[0];
             echo "<tr id='order_$order_id'>";
             echo "<style>
                 #order_$order_id::before {
@@ -40,11 +40,11 @@ if ($query->rowCount() == 0) {
             }
             echo "<td>$total_products</td>";
             echo "<td>$$total_price</td>";
-            echo "<td>$time</td>";
+            echo "<td title='$time'>$timeshort</td>";
             echo "<td>";
             echo "<span>$status</span>";
             if ($nextstatus != "" && $isAdminpage) {
-                echo "<form action='setorderstatus.php' method='post'>";
+                echo "<form action='setorderstatus.php' method='post' class='statusform'>";
                 echo "<button name='status' value='$nextstatus'>> $nextstatus</button><input type='hidden' name='oid' value='$order_id'></form>";
             }
             echo "</td>";

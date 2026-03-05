@@ -17,6 +17,13 @@
     gap: 1ch;
 }
 
+.statusform {
+    opacity: 0.3;
+}
+.statusform:hover {
+    opacity: 1;
+}
+
 .pricesetter > input {
     width: 7ch;
     text-align: right;
