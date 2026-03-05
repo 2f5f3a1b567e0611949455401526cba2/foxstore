@@ -13,7 +13,6 @@ $signup_err = (($_GET['r'] === 'account_login') ? $_GET['err'] : '');
 	<form action="browse.php?a=account_signup" method="post" style='display: flex;flex-direction:column;'>
 		<input type="text" name="user" id="user" placeholder="username">
 		<input type="password" name="pass"  id="pass" placeholder="password">
-		<input type="password" name="pass2" id="pass2" placeholder="password">
         
 		<b style='font-size:16px;height:1em;'><?=$signup_err?></b>
 		<button type="submit">sign up</button>

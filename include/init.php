@@ -302,7 +302,7 @@ function ignore(){
 /*----------------------------------------------------------------------------*/
 function init_head($name) {
 	$script = "<style> .script{display:none !important;} .noscript{display:block;} </style>";
-	if ($_SESSION['script'] !== 'ignore'){
+	if (($_SESSION['script'] ?? null) !== 'ignore'){
 		$script = "<noscript>" . $script . "</noscript>";
 	}
 	echo "<head>
