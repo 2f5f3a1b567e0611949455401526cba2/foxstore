@@ -24,9 +24,6 @@ summary::marker {
 
 details > div {
     position: absolute;
-    background-color: var(--bg);
-    border: 1px solid var(--br);
-    padding: 1em 1ch;
     z-index: 1;
 }
 

@@ -39,7 +39,7 @@ if ($query->rowCount() == 0) {
             </style></td>";
             if ($isAdminpage) {
                 echo "<td>";
-                echo "<details><summary>$customer</summary><div><p>$ship_name</p><p>$ship_address</p></div>";
+                echo "<details><summary>$customer</summary><div class='dd'><p>$ship_name</p><p>$ship_address</p></div>";
                 echo "</td>";
             }
             echo "<td>$total_products</td>";
