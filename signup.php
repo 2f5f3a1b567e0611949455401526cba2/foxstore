@@ -1,5 +1,6 @@
 <?php 
 require_once __DIR__ . '/include/init.php';
+$signup_err = (($_GET['r'] === 'account_login') ? $_GET['err'] : '');
 ?>
 
 <!DOCTYPE html>
@@ -9,18 +10,11 @@ require_once __DIR__ . '/include/init.php';
 <main class='noscript page'>
     <?php include 'include/header.php'?>
 	<div class='vcenter' style='justify-content:center;height:calc(100vh - 2em);'>
-	<form action="browse.php?action=signup" method="post" style='display: flex;flex-direction:column;'>
+	<form action="browse.php?a=account_signup" method="post" style='display: flex;flex-direction:column;'>
 		<input type="text" name="user" id="user" placeholder="username">
 		<input type="password" name="pass"  id="pass" placeholder="password">
-		<input type="password" name="pass2" id="pass2" placeholder="password">
         
-		<b style='font-size:16px;height:1em;'>
-        <php?
-            if (isset($signup_err)) {
-                echo "$signup_err";
-            }
-        ?>
-        </b>
+		<b style='font-size:16px;height:1em;'><?=$signup_err?></b>
 		<button type="submit">sign up</button>
 	</form>
 	</div>

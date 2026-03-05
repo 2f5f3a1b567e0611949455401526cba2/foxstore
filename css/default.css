@@ -25,22 +25,22 @@ body {
 }
 
 /* Dropdowns Style */
-.dd {display:none;position:absolute;top:100%}
+.dd {position:absolute;top:100%}
 .dd,.box {background:var(--bg);color:var(--fg);padding:0.5em 0.5ch;border:1px solid var(--br);border-radius:0.5ch}
 
 /* Form Style */ 
 form > li {display:flex;gap:1ch;align-content:center;}
 
 /* Header Drop Down:s */
-header > input[type='radio']:checked ~ :is(#ddcart, .dd){display:block !important}
 
 .overlay{left:0}
-header>input[type='radio']:checked~p>.overlay{pointer-events:auto} 
-header>input[type='radio']:checked~input[type='radio']~p>.overlay,
+.tgl:checked~p>.overlay{pointer-events:auto} 
+.tgl:checked~.tgl~p>.overlay,
 .overlay{pointer-events:none}
 
-header > input[type='radio']:checked ~ input[type='radio'] ~ :is(#ddcart, .dd),
-.hidden {visibility:collapse;position:absolute}
+.tgl:checked~.tgl_on{display:unset !important}
+.tgl:checked~.tgl~.tgl_on,.tgl_on,
+.hidden {display:none !important}
 
 /* Utility */
 .invis {position:absolute;color:#00000000}
@@ -87,8 +87,8 @@ button:active, label:active, a:active {font-weight: bold;}
 	margin-top: 0.5em; 
 	padding-top: 1em;
 }
-.border-top > h1 {
-	position:absolute; top:-0.5em; left:1ch; 
+.top {
+	position:absolute; top:-0.5em;
 	padding: 0 0.5ch; background: var(--bg);
 }
 

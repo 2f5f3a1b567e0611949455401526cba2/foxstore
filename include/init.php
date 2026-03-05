@@ -179,6 +179,7 @@ function theme(){
 	ret:ret_post($params);
 }
 
+
 function order($db){
 	/* INIT */
 	$params = $_GET;
@@ -259,8 +260,51 @@ function order($db){
 	ret:ret_post($params);
 }
 
+function comment($db){
+	/* INIT */
+	$params = $_GET;
+	$params['r'] = 'comment';
+	/* BODY */
+	if (!isset($_SESSION['user_id'])){$params['err'] = 'not logged in'; goto ret; }
+	if (!isset($_POST['r'])){$params['err'] = 'rating not set'; goto ret; }
+	if (!isset($_GET['pID'])){$params['err'] = 'pID not set'; goto ret; }
+
+	try {
+	$pID = (int)$_GET['pID'];
+	$uID = (int)$_SESSION['user_id'];
+	$rating =  (int)$_POST['r'];
+	$comment = $_POST['c'] ?? '';
+	
+	$st = $db->prepare("
+		INSERT INTO comments (product_id, user_id, rating, comment_desc)
+		VALUES (:pID, :uID, :rating, :comment)
+	");
+	$st->execute([':pID' => $pID, ':uID' => $uID, ':rating' => $rating, ':comment' => $comment]);
+	} catch(Exception $err) {$params['err'] = 'badly formatted request'; goto ret; }
+	/* Success */
+	unset($params['r']);
+	/* DONE */
+	ret:ret_post($params);
+}
+
+function ignore(){
+	/* INIT */
+	$params = $_GET;
+	$params['r'] = 'ignore';
+	/* BODY */
+	$_SESSION['script'] = 'ignore';
+	/* Success */
+	unset($params['r']);
+	/* DONE */
+	ret:ret_post($params);
+}
+
 /*----------------------------------------------------------------------------*/
 function init_head($name) {
+	$script = "<style> .script{display:none !important;} .noscript{display:block;} </style>";
+	if (($_SESSION['script'] ?? null) !== 'ignore'){
+		$script = "<noscript>" . $script . "</noscript>";
+	}
 	echo "<head>
 <meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
@@ -268,16 +312,15 @@ function init_head($name) {
 <link rel='shortcut icon' href='favicon.ico'>
 <link rel='stylesheet' href='css/default.css'>
 <style>:root{--bg:{$_SESSION['bg']};--fg:{$_SESSION['fg']};--br:{$_SESSION['br']}}</style>
-<style>
-	.script{display:none !important;}
-	.noscript{display:block;}
-</style>
+{$script}
 </head>";
 }
 function init_script() {
-	//echo "<main class='script' style='padding-top:50vh;text-align:center;height:100vh;'>
-	//javascript must be disabled
-	//</main>";
+	echo "<main class='script' style='padding-top:50vh;text-align:center;height:100vh;'>
+	<form id='ignoreScript' action='?a=ignore' method='post'><form>
+	javascript must be disabled <br>
+	<button form='ignoreScript' style='font-size:16px'>skip</button>
+	</main>";
 }
 
 /*----------------------------------------------------------------------------*/
@@ -289,22 +332,21 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-if (isset($_GET['a'])) {
-    match($_GET['a']){
-        // no return
-        'account_login'   => account_login ($db),
-        'account_logout'  => account_logout(),
-        'account_signup'  => account_signup($db),
-        'account_delete'  => account_delete($db),
-        'cart_add'        => cart_append ($db),
-        'cart_mod'        => cart_modify ($db),
-        /* 'comment'         => comment($db), */
-        'order'           => order  ($db),
-        'theme'           => theme  (),
-        // returns
-        default   => null,
-    };
-}
+match($_GET['a'] ?? null){
+  // no return
+  'account_login'   => account_login ($db),
+  'account_logout'  => account_logout(),
+  'account_signup'  => account_signup($db),
+  'account_delete'  => account_delete($db),
+  'cart_add'        => cart_append ($db),
+  'cart_mod'        => cart_modify ($db),
+  'comment'         => comment($db),
+  'order'           => order  ($db),
+	'theme'           => theme  (),
+	'ignore'          => ignore (),
+  // returns
+  default   => null,
+};
 
 $_SESSION['bg'] = $_SESSION['bg'] ?? '#000000';
 $_SESSION['fg'] = $_SESSION['fg'] ?? '#808080';
