@@ -13,35 +13,41 @@ require_once __DIR__ . '/include/init.php';
 
 <?php
 $sortmode = match($_GET["sort"] ?? null){
-	"priced" => "p.price ASC",
-	"priceu" => "p.price DESC",
-	/* "rated"  => "p.rated ASC", */
-	/* "rateu"  => "p.rateu DESC", */
-	default  =>  "p.product_id",
+	"priceu" => "price ASC",
+	"priced" => "price DESC",
+	"rateu"  => "rating ASC",
+	"rated"  => "rating DESC",
+	default  =>  "product_id",
 };
 // WARN: TODO: '%%' is a bad request
 // But to be honest allowing arbitrary matching is kinda bad
 $search = '%' . ($_GET["s"] ?? '') . '%';
 
-$query = $db->prepare(
-	"SELECT p.*, i.image_path, i.image_alt FROM products p
-	LEFT JOIN images i ON i.id = (
-		SELECT images.id 
-		FROM images
-		WHERE images.product_id = p.product_id 
-		LIMIT 1
-	) WHERE p.name LIKE :search ORDER BY $sortmode"
-);
+$query = $db->prepare("
+	SELECT * FROM product_summary 
+	WHERE name LIKE :search ORDER BY $sortmode
+");
+
+	/* product_id, */
+	/* name, */
+	/* price, */
+	/* rating, */
+	/* thumb */
+	/* alt */
+
 $query->execute([':search' => $search]);
 
 while($row = $query->fetch()){
-	$path = "/foxstore/img/products/{$row['image_path']}";
+	$path = "/foxstore/img/products/" . htmlspecialchars($row['thumb']);
+	$name = htmlspecialchars($row["name"]);
+	$alt = htmlspecialchars($row['alt']);
+	$rating = number_format($row['rating'] ?? 0, 1);
 	echo "
 		<a class='border-top' style='width: 20ch' href=./prod.php?pID={$row["product_id"]}>
-			<h1 style='max-width:18ch;overflow:hidden;'>{$row["name"]}</h1>
+			<h1 class='top' style='left:1ch;max-width:18ch;overflow:hidden'>{$name}</h1>
 			<figure style='position: relative;'>
-			<img class='browseimg' src='{$path}' alt='{$row['image_alt']}'>
-			<figcaption style='border-bottom:1px solid var(--br);margin-top:0.5em;'>{$row["price"]} - {$row["stock"]}</figcaption>
+			<img class='browseimg' src='{$path}' alt='{$alt}'>
+			<figcaption style='border-bottom:1px solid var(--br);margin-top:0.5em;'>{$row["price"]} - {$row["stock"]} - {$rating}</figcaption>
 			</figure>
 		</a>";
 };
