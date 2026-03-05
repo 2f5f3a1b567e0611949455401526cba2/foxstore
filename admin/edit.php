@@ -1,5 +1,7 @@
 <?php
-    require '../include/checklogin.php';
+    require '../include/db.php';
+    require '../include/checkadmin.php';
+    require_once '../include/init.php';
     
     if (isset($_GET["edit_id"])) {
         $product_id = $_GET["edit_id"];
@@ -8,7 +10,6 @@
         exit;
     }
 
-    require '../include/db.php';
     $statement = $db->prepare('SELECT * FROM products WHERE product_id=:product_id');
     $statement->bindParam(':product_id', $product_id);
     $statement->execute();
@@ -30,21 +31,16 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit product <?=$product_name?></title>
-    <link rel="stylesheet" href="../css/default.css">
-</head>
+<?php init_head("edit product $product_name"); ?>
 <body>
-    <main>
-        <h1>Editing product ID <?=$product_id?> (<?=$product_name?>)</h1>
-        <a href="./">Back</a>
+    <main class="page">
+        <?php include '../include/header.php'?>
+        <h1>editing product ID <?=$product_id?> (<?=$product_name?>)</h1>
         <form action="updateproduct.php" class="editform vform" method="post" enctype="multipart/form-data">
             <input type="hidden" name="pid" value="<?=$product_id?>">
             <?php
                 require "../include/editform.php";
-                ?>
+            ?>
             <button>Update</button>
         </form>
         <form action="removeproduct.php" class="removeform" method="post">

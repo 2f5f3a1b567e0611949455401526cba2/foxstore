@@ -12,7 +12,7 @@
 }
 
 
-*{all:unset;display:revert;box-sizing:border-box;justify:center}
+*{all:unset;display:revert;box-sizing:border-box;}
 html{font-size:var(--font-size);line-height:var(--line-height);font-family:monospace}
 header {width:auto;gap:2ch;padding:1em 1ch;height:1em;position:relative}
 .page {max-width:80ch;margin:0 auto;height:100vh}
@@ -58,7 +58,7 @@ label, a, button {
 	-webkit-user-select: none; /* Safari */
 	-ms-user-select: none;     /* IE 10 and 11 */
 	user-select: none;         /* Standard syntax */
-	height: 1em;
+	height: 1rem;
 	flex: 0 0 auto;
 	white-space: nowrap;
     &:hover {
@@ -92,7 +92,7 @@ button:active, label:active, a:active {font-weight: bold;}
 	padding: 0 0.5ch; background: var(--bg);
 }
 
-input{display:flex;height:1em;justify-content:center;padding-top:4px;}
+input{display:flex;height:1rem;justify-content:center;padding-top:4px;}
 input[type='text'],input[type='password']{width:14ch;}
 input[type='color']{width:1ch;vertical-align:top;padding:0 0 4px 0;}
 

@@ -305,12 +305,18 @@ function init_head($name) {
 	if (($_SESSION['script'] ?? null) !== 'ignore'){
 		$script = "<noscript>" . $script . "</noscript>";
 	}
+	$isAdminpage = str_contains($_SERVER['REQUEST_URI'],"admin");
+	$moreCss = "";
+	if ($isAdminpage) {
+		$moreCss = "<link rel='stylesheet' href='/foxstore/css/admin.css'>";
+	}
 	echo "<head>
 <meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
 <title>{$name}</title>
 <link rel='shortcut icon' href='favicon.ico'>
-<link rel='stylesheet' href='css/default.css'>
+<link rel='stylesheet' href='/foxstore/css/default.css'>
+$moreCss
 <style>:root{--bg:{$_SESSION['bg']};--fg:{$_SESSION['fg']};--br:{$_SESSION['br']}}</style>
 {$script}
 </head>";

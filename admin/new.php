@@ -1,18 +1,14 @@
 <?php
-require '../include/checklogin.php';
+require '../include/checkadmin.php';
+require_once '../include/init.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create new product</title>
-    <link rel="stylesheet" href="../css/default.css">
-</head>
+<?php init_head('new product'); ?>
 <body>
-    <main>
-        <h1>Creating new product</h1>
-        <a href="./">Back</a>
+    <main class="page">
+        <?php include '../include/header.php'?>
+        <h1>creating new product</h1>
         <form action="updateproduct.php" class="editform vform" method="post" enctype="multipart/form-data">
             <input type="hidden" name="new" value="1">
             <?php

@@ -21,9 +21,51 @@ td {
 }
 
 tr:nth-child(2n) {
-    background-color: #aaaaaa60;
+    background-color: #cccccc10;
 }
 
 td:last-child {
     text-align: right;
+}
+
+.editform {
+    display: flex;
+    flex-direction: column;
+    gap: 1ch;
+}
+
+.pricesetter > input {
+    width: 7ch;
+    text-align: right;
+}
+
+.pricesetter {
+    display: flex;
+    flex-direction: row;
+}
+
+.editform > div {
+    display: flex;
+    flex-direction: column;
+}
+
+.editform input, .editform textarea {
+    background-color: #cccccc20;
+}
+
+textarea {
+    padding: 1ch;
+}
+
+.editform input[type="file"] {
+    font-size: 0.5rem;
+}
+
+.removebutton {
+    color: rgb(208, 0, 52);
+}
+
+.removeform {
+    display: flex;
+    flex-direction: row-reverse;
 }

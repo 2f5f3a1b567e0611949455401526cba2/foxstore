@@ -8,7 +8,7 @@
 </div>
 <div>
     <label for="price">Product price</label>
-    <div>
+    <div class="pricesetter">
         <span>$</span>
         <input type="number" name="price" id="price" value="<?=$product_price?>" min="0.99" step="0.01">
     </div>
