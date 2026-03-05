@@ -15,8 +15,8 @@ $url_logout = http_build_query($params);
 $isAdminpage = str_contains($_SERVER['REQUEST_URI'],"admin");
 
 
-$login_err =     ($_GET['r'] === 'account_login') ? $_GET['err'] : '';
-$login_checked = ($_GET['r'] === 'account_login') ? 'checked' : '';
+$login_err =     (($_GET['r'] ?? null) === 'account_login') ? $_GET['err'] : '';
+$login_checked = (($_GET['r'] ?? null) === 'account_login') ? 'checked' : '';
 
 
 ?>

@@ -10,7 +10,7 @@ $url_order = http_build_query($params);
 
 
 /*----------------------------------------------------------------------------*/
-$order_err = ($_GET['r'] === 'order') ? $_GET['err'] ?? null : null;
+$order_err = (($_GET['r'] ?? null) === 'order') ? $_GET['err'] ?? null : null;
 ?>
 
 <!DOCTYPE html>
