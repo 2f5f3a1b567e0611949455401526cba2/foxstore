@@ -170,9 +170,20 @@ function theme(){
 	$params = $_GET;
 	$params['r'] = 'theme';
 	/* BODY */
-	$_SESSION['bg'] = $_POST['bg'] ?? $_SESSION['bg'] ?? 'black';
-	$_SESSION['fg'] = $_POST['fg'] ?? $_SESSION['fg'] ?? 'gray';
-	$_SESSION['br'] = $_POST['br'] ?? $_SESSION['br'] ?? 'gray';
+	
+	$theme = [];
+	if (isset($_COOKIE['theme'])){
+		$theme = json_decode($_COOKIE['theme'], true);
+	}
+
+	$theme['bg'] = $_POST['bg'] ?? $theme['bg'] ?? '#000000';
+	$theme['fg'] = $_POST['fg'] ?? $theme['fg'] ?? '#808080';
+	$theme['br'] = $_POST['br'] ?? $theme['br'] ?? '#808080';
+
+	// current time + seconds (60s * 60m * 24h) * 30
+	$expiration = time() + (86400 * 30);
+	setcookie('theme', json_encode($theme), $expiration, "/"); 
+
 	/* Success */
 	unset($params['r']);
 	/* DONE */
@@ -292,7 +303,10 @@ function ignore(){
 	$params = $_GET;
 	$params['r'] = 'ignore';
 	/* BODY */
-	$_SESSION['script'] = 'ignore';
+
+	// current time + seconds (60s * 60m * 24h)
+	$expiration = time() + 86400;
+	setcookie('script', 'ignore', $expiration, "/"); 
 	/* Success */
 	unset($params['r']);
 	/* DONE */
@@ -301,8 +315,9 @@ function ignore(){
 
 /*----------------------------------------------------------------------------*/
 function init_head($name) {
+	global $theme;
 	$script = "<style> .script{display:none !important;} .noscript{display:block;} </style>";
-	if (($_SESSION['script'] ?? null) !== 'ignore'){
+	if (($_COOKIE['script'] ?? null) !== 'ignore'){
 		$script = "<noscript>" . $script . "</noscript>";
 	}
 	$isAdminpage = str_contains($_SERVER['REQUEST_URI'],"admin");
@@ -317,7 +332,7 @@ function init_head($name) {
 <link rel='shortcut icon' href='favicon.ico'>
 <link rel='stylesheet' href='/foxstore/css/default.css'>
 $moreCss
-<style>:root{--bg:{$_SESSION['bg']};--fg:{$_SESSION['fg']};--br:{$_SESSION['br']}}</style>
+<style>:root{--bg:{$theme['bg']};--fg:{$theme['fg']};--br:{$theme['br']}}</style>
 {$script}
 </head>";
 }
@@ -354,7 +369,11 @@ match($_GET['a'] ?? null){
   default   => null,
 };
 
-$_SESSION['bg'] = $_SESSION['bg'] ?? '#000000';
-$_SESSION['fg'] = $_SESSION['fg'] ?? '#808080';
-$_SESSION['br'] = $_SESSION['br'] ?? '#808080';
+$theme = [];
+if (isset($_COOKIE['theme'])){
+	$theme = json_decode($_COOKIE['theme'], true);
+}else{
+	$theme = ['bg' => '#000000', 'fg' => '#808080', 'br' => '#808080'];
+}
+
 ?>
