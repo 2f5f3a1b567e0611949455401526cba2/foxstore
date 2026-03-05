@@ -31,12 +31,12 @@ if ($query->rowCount() == 0) {
             $statuscolor = ["unpaid" => "red", "paid" => "orange", "packaged" => "yellow", "delivered" => "lime"][$status];
             $timeshort = explode(" ",$time)[0];
             echo "<tr id='order_$order_id'>";
+            echo "<td>$order_id";
             echo "<style>
                 #order_$order_id::before {
                     background-color: $statuscolor;
                 }
-            </style>";
-            echo "<td>$order_id</td>";
+            </style></td>";
             if ($isAdminpage) {
                 echo "<td>";
                 echo "<details><summary>$customer</summary><div><p>$ship_name</p><p>$ship_address</p></div>";
