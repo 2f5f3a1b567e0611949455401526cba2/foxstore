@@ -25,8 +25,8 @@
 	//$search = $_Get["search"];
 
 	$query = $db->prepare(
-		"SELECT p.*, i.* FROM products p
-		LEFT JOIN images i ON i.id = (
+		"SELECT p.*, i.image_path, i.image_alt FROM products AS p
+		LEFT JOIN images AS i ON i.id = (
 			SELECT images.id 
 			FROM images
 			WHERE images.product_id = p.product_id 
