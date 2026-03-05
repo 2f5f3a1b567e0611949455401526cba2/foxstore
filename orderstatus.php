@@ -5,7 +5,7 @@ if (!isset($_SESSION["user_id"])) {
     redirect("./browse.php");
 }
 $query = $db->prepare("
-SELECT orders.order_id AS order_id, username, time, status, sum(amount) AS total_products, sum(price) as total_price
+SELECT orders.order_id AS order_id, username, time, status, address, name AS ship_name, sum(amount) AS total_products, sum(price) as total_price
 FROM orders INNER JOIN users ON orders.user_id = users.user_id INNER JOIN order_items ON orders.order_id = order_items.order_id WHERE orders.user_id = :user_id
 GROUP BY orders.order_id ORDER BY time DESC;
 ");

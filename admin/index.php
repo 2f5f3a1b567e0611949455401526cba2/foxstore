@@ -58,7 +58,9 @@
             <h2 class="top" style="left:1ch">orders</h2>
         </div>
         <?php
-            $query = $db->query('SELECT orders.order_id AS order_id, username, time, status, sum(amount) AS total_products, sum(price) as total_price FROM orders INNER JOIN users ON orders.user_id = users.user_id INNER JOIN order_items ON orders.order_id = order_items.order_id GROUP BY orders.order_id ORDER BY time DESC;');
+            $query = $db->query("SELECT orders.order_id AS order_id, username, time, status, address, name AS ship_name, sum(amount) AS total_products,
+            sum(price) as total_price FROM orders INNER JOIN users ON orders.user_id = users.user_id
+            INNER JOIN order_items ON orders.order_id = order_items.order_id GROUP BY orders.order_id ORDER BY time DESC;");
             require "../include/ordertable.php";
         ?>
         

@@ -21,6 +21,8 @@ if ($query->rowCount() == 0) {
         while(($row = $query->fetch())) {
             $order_id = $row["order_id"];
             $time = $row["time"];
+            $ship_name = $row["ship_name"];
+            $ship_address = $row["address"];
             $total_products = $row["total_products"];
             $total_price = $row["total_price"];
             $customer = $row["username"];
@@ -36,7 +38,9 @@ if ($query->rowCount() == 0) {
             </style>";
             echo "<td>$order_id</td>";
             if ($isAdminpage) {
-                echo "<td>$customer</td>";
+                echo "<td>";
+                echo "<details><summary>$customer</summary><div><p>$ship_name</p><p>$ship_address</p></div>";
+                echo "</td>";
             }
             echo "<td>$total_products</td>";
             echo "<td>$$total_price</td>";

@@ -17,6 +17,19 @@
     gap: 1ch;
 }
 
+summary::marker {
+    /*Stop marker from displaying*/
+    content: "";
+}
+
+details > div {
+    position: absolute;
+    background-color: var(--bg);
+    border: 1px solid var(--br);
+    padding: 1em 1ch;
+    z-index: 1;
+}
+
 .statusform {
     opacity: 0.3;
 }
