@@ -1,13 +1,4 @@
-table, tr, td {
-    border: 1px solid gray;
-    border-collapse: collapse;
-}
-table {
-    margin-top: 2ch;
-}
-td {
-    padding: 1ch;
-}
+
 
 .stock {
     display: grid;
@@ -18,14 +9,6 @@ td {
 .stock > input[type="text"] {
     width: 3ch;
     text-align: center;
-}
-
-tr:nth-child(2n) {
-    background-color: #cccccc10;
-}
-
-td:last-child {
-    text-align: right;
 }
 
 .editform {

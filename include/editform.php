@@ -14,7 +14,9 @@
     </div>
 </div>
 <div>
-    <span>Images</span>
+    <div class="border-top">
+        <h1 class="top" style="left:1ch">images</h1>
+    </div>
     <div class="images">
         <?php
         foreach($images as $imageid => $imgdata) {
