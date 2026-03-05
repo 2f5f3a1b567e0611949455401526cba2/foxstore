@@ -1,6 +1,6 @@
 <?php
 
-function ret_post($params): never {
+function ret_post($params, $forcelocation = ""): never {
 	unset($params['a']);
 	$query = http_build_query($params);
 	$url = $_SERVER['PHP_SELF'];
@@ -8,6 +8,9 @@ function ret_post($params): never {
 			$url .= '?' . $query;
 	}
 	session_write_close();
+	if ($forcelocation != "") {
+		header("Location: " . $forcelocation); exit();
+	}
 	header("Location: " . $url, true, 303); exit();
 }
 
@@ -212,7 +215,7 @@ function order($db){
 	// Create Order
 	$st = $db->prepare("
 		INSERT INTO orders (name, address, status, user_id)
-		VALUES (:name, :addr, 'unpaid', :uID)
+		VALUES (:name, :addr, 'paid', :uID)
 	");
 	try { // Create Order for User
 		$st->execute([':name' => $name, ':addr' => $addr, ':uID' => $uID]);
@@ -268,7 +271,7 @@ function order($db){
 	/* Success */
 	unset($params['r']);
 	/* DONE */
-	ret:ret_post($params);
+	ret:ret_post($params, "/foxstore/orderstatus.php");
 }
 
 function comment($db){
@@ -373,7 +376,7 @@ $theme = [];
 if (isset($_COOKIE['theme'])){
 	$theme = json_decode($_COOKIE['theme'], true);
 }else{
-	$theme = ['bg' => '#000000', 'fg' => '#808080', 'br' => '#808080'];
+	$theme = ['bg' => '#2C3941', 'fg' => '#f0f0f0ff', 'br' => '#708090'];
 }
 
 ?>

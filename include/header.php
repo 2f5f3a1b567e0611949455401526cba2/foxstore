@@ -59,6 +59,9 @@ $login_checked = (($_GET['r'] ?? null) === 'account_login') ? 'checked' : '';
 </p>
 <!-- Cart Drop Down -->
 <iframe class='dd cart tgl_on' style='left:1ch' src='cart.php' name='ifCart'></iframe>
+
+<a href="/foxstore/orderstatus.php">orders</a>
+
 <?php endif; ?>
 <?php endif; ?>
 

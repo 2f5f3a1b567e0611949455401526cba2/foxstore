@@ -44,7 +44,7 @@ $comment_checked = (($_GET['r'] ?? null) === 'comment') ? 'checked' : '';
 
 <!DOCTYPE html>
 <html lang="en">
-<?php init_head('product'); ?>
+<?php init_head("$pname at foxstore"); ?>
 <body id='body' style='color:var(--fg);background:var(--bg);'>
 <main class='noscript page'>
 <?php include 'include/header.php'?>
@@ -55,7 +55,7 @@ $comment_checked = (($_GET['r'] ?? null) === 'comment') ? 'checked' : '';
 			<h1 class='top' style='left:1ch'>description</h1>
 			<?=$pdesc?>
 			</div>
-			<div class='border-top' style='grid-area: comm'>
+			<div class='border-top comments' style='grid-area: comm'>
 			<h1 class='top' style='left:1ch'>comments</h1>
 
 			<input class='hidden'       type='radio' id='nil_cmt_btn'    name='comment_btns'/>

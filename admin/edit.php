@@ -35,7 +35,9 @@
 <body>
     <main class="page">
         <?php include '../include/header.php'?>
-        <h1>editing product ID <?=$product_id?> (<?=$product_name?>)</h1>
+        <div class="border-top">
+            <h1 class="top" style="left:1ch">editing product ID <?=$product_id?> (<?=$product_name?>)</h1>
+        </div>
         <form action="updateproduct.php" class="editform vform" method="post" enctype="multipart/form-data">
             <input type="hidden" name="pid" value="<?=$product_id?>">
             <?php

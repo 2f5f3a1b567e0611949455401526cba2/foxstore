@@ -1,13 +1,4 @@
-table, tr, td {
-    border: 1px solid gray;
-    border-collapse: collapse;
-}
-table {
-    margin-top: 2ch;
-}
-td {
-    padding: 1ch;
-}
+
 
 .stock {
     display: grid;
@@ -20,18 +11,17 @@ td {
     text-align: center;
 }
 
-tr:nth-child(2n) {
-    background-color: #cccccc10;
-}
-
-td:last-child {
-    text-align: right;
-}
-
 .editform {
     display: flex;
     flex-direction: column;
     gap: 1ch;
+}
+
+.statusform {
+    opacity: 0.3;
+}
+.statusform:hover {
+    opacity: 1;
 }
 
 .pricesetter > input {

@@ -107,7 +107,8 @@ CREATE TABLE store.comments (
 		ON DELETE CASCADE
 		ON UPDATE CASCADE,
         
-	primary key(id)
+	primary key(id),
+	UNIQUE(product_id, user_id)
 );
 
 CREATE VIEW store.product_summary AS

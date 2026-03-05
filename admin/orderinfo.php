@@ -3,7 +3,14 @@
     require '../include/helper.php';
     require '../include/checkadmin.php';
     require_once '../include/init.php';
-    ?>
+    
+    if (isset($_GET["order_id"])) {
+        $order_id = $_GET["order_id"];
+    } else {
+        header('Location: ./');
+        exit;
+    }
+?>
 
 <!DOCTYPE html>
 <html lang="sv">
@@ -15,21 +22,20 @@
         <div class="border-top">
             <h1 class="top" style="left:1ch">admin page</h1>
         </div>
-        <div class="border-top">
-            <h2 class="top" style="left:1ch">products</h2>
-        </div>
         <table>
             <tr>
-                <td>ProductID</td>
-                <td>Product Name</td>
-                <td>Price</td>
-                <td>Stock</td>
+                <td>OrderID</td>
+                <td>Customer</td>
+                <td>Total products</td>
+                <td>Total Price</td>
+                <td>Time</td>
+                <td>Status</td>
                 <td></td>
             </tr>
             <?php 
-                $query = $db->query('SELECT product_id, name, stock, price FROM products');
+                $query = $db->query('SELECT orders.order_id, username, time, status, sum(amount) AS total_items, sum(price) as total_price FROM orders INNER JOIN users ON orders.user_id = users.user_id INNER JOIN order_items ON orders.order_id = order_items.order_id;');
                 while(($row = $query->fetch())) {
-                    $pname = htmlspecialchars($row["name"]);
+                    $order_id = htmlspecialchars($row["name"]);
                     $id = $row["product_id"];
                     $price = $row["price"];
                     $stock = $row["stock"];
@@ -38,14 +44,11 @@
                     echo "<td>$id</td>";
                     echo "<td>$pname</td>";
                     echo "<td>$$price</td>";
-                    echo "<td>";
-                    echo "<form class='stock' action='updatestock.php' method='post'>";
-                    echo "<input type='submit' style='display:none;'><button name='change' value='-1' $disabled>-</button><input type='text' name='stock' value='$stock'><button name='change' value='1'>+</button><input type='hidden' name='pid' value='$id'></form>";
-                    echo "</td>";
                     echo "<td><a href='edit.php?edit_id=$id'>Edit</a></td>";
                     echo "</tr>";
                 }
             ?>
+            
             <tr>
                 <td></td>
                 <td></td>
@@ -54,13 +57,6 @@
                 <td><a href='new.php'>Add new</a></td>
             </tr>
         </table>
-        <div class="border-top">
-            <h2 class="top" style="left:1ch">orders</h2>
-        </div>
-        <?php
-            $query = $db->query('SELECT orders.order_id AS order_id, username, time, status, sum(amount) AS total_products, sum(price) as total_price FROM orders INNER JOIN users ON orders.user_id = users.user_id INNER JOIN order_items ON orders.order_id = order_items.order_id GROUP BY orders.order_id ORDER BY time DESC;');
-            require "../include/ordertable.php";
-        ?>
         
     </main>
 </body>
