@@ -64,7 +64,7 @@ $login_checked = (($_GET['r'] ?? null) === 'account_login') ? 'checked' : '';
 
 <!-- Admin link -->
  <?php if (isset($_SESSION["admin"])): ?>
-<a href="/foxstore/admin/">admin page</a>
+<a href="/foxstore/admin/">admin</a>
 <?php endif; ?>
 
 <!-- Theme Button -->
