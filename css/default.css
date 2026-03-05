@@ -46,14 +46,14 @@ form > li {display:flex;gap:1ch;align-content:center;}
 #ifcart-body { font-size: var(--ifcart-font-size); line-height: var(--ifcart-line-height); }
 
 /* Reel */
-#ifreel {	width: 40ch; height: 30em; grid-area:reel;}
+#ifreel {	width: 40ch; height: 31em; grid-area:reel;}
 
 /* Buttons */
 label, a, button {
 	-webkit-user-select: none; /* Safari */
 	-ms-user-select: none;     /* IE 10 and 11 */
 	user-select: none;         /* Standard syntax */
-	height: 1em;
+	height: 1rem;
 	flex: 0 0 auto;
 	white-space: nowrap;
     &:hover {
@@ -87,7 +87,7 @@ button:active, label:active, a:active {font-weight: bold;}
 	padding: 0 0.5ch; background: var(--bg);
 }
 
-input{display:flex;height:1em;justify-content:center;padding-top:4px;}
+input{display:flex;height:1rem;justify-content:center;padding-top:2px;}
 input[type='text'],input[type='password']{width:14ch;}
 input[type='color']{width:1ch;vertical-align:top;padding:0 0 4px 0;}
 
@@ -106,12 +106,20 @@ input[type='color']{width:1ch;vertical-align:top;padding:0 0 4px 0;}
 }
 
 #prod-main {
-display: grid;
-grid-template:
-  "reel form" min-content
-  "reel desc" 1fr
-  "comm comm" auto / 1fr 1fr;
+	display: grid;
+	grid-template:
+	"reel form" min-content
+	"reel desc" 1fr
+	"comm comm" auto / 1fr 1fr;
+	gap: 1em 1ch;
 }
 
 /* Fixes warn about overflow visible*/
 img{overflow:clip;overflow-clip-margin:content-box;} 
+
+body:has(.page) {
+	/*Stop the page from going all the way out to the edge*/
+	padding-inline: 1ch;
+	color:var(--fg);
+    background:var(--bg);
+}

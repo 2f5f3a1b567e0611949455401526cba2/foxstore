@@ -1,0 +1,117 @@
+table, tr, td {
+    border: 1px solid gray;
+    border-collapse: collapse;
+}
+table {
+    margin-top: 2ch;
+}
+td {
+    padding: 1ch;
+}
+
+.stock {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 4px;
+}
+
+.stock > input[type="text"] {
+    width: 3ch;
+    text-align: center;
+}
+
+tr:nth-child(2n) {
+    background-color: #cccccc10;
+}
+
+td:last-child {
+    text-align: right;
+}
+
+.editform {
+    display: flex;
+    flex-direction: column;
+    gap: 1ch;
+}
+
+.pricesetter > input {
+    width: 7ch;
+    text-align: right;
+}
+
+.pricesetter {
+    display: flex;
+    flex-direction: row;
+}
+
+.editform > div, .imginput > div {
+    display: flex;
+    flex-direction: column;
+}
+
+.editform input, .editform textarea {
+    background-color: #cccccc20;
+}
+
+textarea {
+    padding: 1ch;
+}
+
+.editform input[type="file"] {
+    font-size: 0.5rem;
+}
+
+.removebutton {
+    color: rgb(208, 0, 52);
+}
+
+.removeform {
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.images > div {
+    display: flex;
+    flex-direction: row;
+    gap: 1ch;
+    padding: 1ch;
+    border: 2px solid var(--br);
+}
+
+.images {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(32ch,1fr));
+    gap: 1ch;
+}
+
+.imginput {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: space-between;
+}
+.imginput label {
+    font-size: smaller;
+}
+.imginput input {
+    width: 100%;
+}
+
+.images img {
+    width: 12ch;
+    height: 12ch;
+    object-fit: cover;
+}
+
+.imginput > .removebutton {
+    align-self: flex-end;
+}
+
+.removebutton {
+    color: red;
+    max-width: fit-content;
+}
+
+.error {
+    color: red;
+}

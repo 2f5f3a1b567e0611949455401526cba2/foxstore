@@ -6,7 +6,7 @@ require_once __DIR__ . '/include/init.php';
 <!DOCTYPE html>
 <html lang="en">
 <?php init_head('index'); ?>
-<body id='body' style='color:var(--fg);background:var(--bg);'>
+<body id='body'>
 <main class='noscript page'>
 <?php include 'include/header.php'?>
 <div style='display:flex;align-items:flex-start;flex-wrap:wrap'>
