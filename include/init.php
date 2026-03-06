@@ -271,7 +271,7 @@ function order($db){
 	/* Success */
 	unset($params['r']);
 	/* DONE */
-	ret:ret_post($params, "/foxstore/orderstatus.php");
+	ret:ret_post($params, $params['err'] == null ? "/foxstore/orderstatus.php":"");
 }
 
 function comment($db){
