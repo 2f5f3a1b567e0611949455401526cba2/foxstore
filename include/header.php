@@ -78,11 +78,11 @@ $login_checked = (($_GET['r'] ?? null) === 'account_login') ? 'checked' : '';
 </p>
 <!-- Theme Drop Down -->
 <form class='dd tgl_on' action='?<?=$url_theme?>' method='post' id='theme' style='right:0.5ch'>
-	<li><input type=color id='input_fg' name='fg' value=<?=$theme['fg']?> />
+	<li><input type=color id='input_fg' name='fg' value='<?=$theme['fg']?>' />
 	<label for='input_fg'>foreground</label></li>
-	<li><input type=color id='input_br' name='br' value=<?=$theme['br']?> />
+	<li><input type=color id='input_br' name='br' value='<?=$theme['br']?>' />
 	<label for='input_br'>border</label></li>
-	<li><input type=color id='input_bg' name='bg' value=<?=$theme['bg']?> />
+	<li><input type=color id='input_bg' name='bg' value='<?=$theme['bg']?>' />
 	<label for='input_bg'>background</label></li>
 	<button type='submit'>apply</button>
 </form>
